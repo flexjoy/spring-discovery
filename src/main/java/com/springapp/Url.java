@@ -1,7 +1,7 @@
 package com.springapp;
 
 /**
- * Class contains a list of static strings that determine the URL path.
+ * List of static strings that determine the URL path.
  *
  * @author Sergey Cherepanov
  */
