@@ -8,14 +8,6 @@
         .error {
             color: #ff0000;
         }
-
-        .errorblock {
-            color: #000;
-            background-color: #ffEEEE;
-            border: 1px solid #ff0000;
-            padding: 10px;
-            margin: 5px;
-        }
     </style>
 </head>
 <body>
@@ -23,7 +15,6 @@
 <h2>Person Information Request</h2>
 
 <form:form method="POST" modelAttribute="person" >
-    <form:errors path="*" cssClass="errorblock" element="div" />
     <table>
         <tr>
             <td>ФИО :</td>
