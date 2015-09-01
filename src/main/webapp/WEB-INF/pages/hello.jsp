@@ -17,12 +17,12 @@
 <form:form method="POST" modelAttribute="person" >
     <table>
         <tr>
-            <td>ФИО :</td>
+            <td><form:label path="name">ФИО: </form:label></td>
             <td><form:input path="name" /></td>
             <td><form:errors path="name" cssClass="error" /></td>
         </tr>
         <tr>
-            <td>Возраст :</td>
+            <td><form:label path="age">Возраст: </form:label></td>
             <td><form:input path="age" /></td>
             <td><form:errors path="age" cssClass="error" /></td>
         </tr>
