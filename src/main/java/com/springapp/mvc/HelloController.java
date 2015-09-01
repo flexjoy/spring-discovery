@@ -20,13 +20,12 @@ public class HelloController {
 	}
 
     @RequestMapping(value = Url.HOME_PAGE, method = RequestMethod.POST)
-    public String perponse(@Valid Person person, BindingResult result, ModelMap model) {
+    public String handlePersonForm(@Valid Person person, BindingResult result, ModelMap model) {
         String view = "result";
         if (result.hasErrors()){
             view = "hello";
         } else {
-            model.addAttribute("name", person.getName());
-            model.addAttribute("age", person.getAge());
+            model.addAttribute("person", person);
         }
         return view;
     }
