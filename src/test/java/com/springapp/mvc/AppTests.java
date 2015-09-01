@@ -1,6 +1,6 @@
 package com.springapp.mvc;
 
-import com.springapp.config.WebAppConfig;
+import com.springapp.config.ServletConfig;
 import com.springapp.config.WebAppInit;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @WebAppConfiguration
 @ContextConfiguration(classes = {
         WebAppInit.class,
-        WebAppConfig.class
+        ServletConfig.class
 })
 public class AppTests {
 
