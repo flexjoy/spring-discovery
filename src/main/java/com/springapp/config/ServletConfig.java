@@ -7,14 +7,16 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 /**
- * Spring Java Configuration class. Replaces mvc-dispatcher-servlet.xml file.
+ * Servlet context configuration class
+ *
+ * Replaces mvc-dispatcher-servlet.xml file
  *
  * @author Sergey Cherepanov
  */
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.springapp")
-public class WebAppConfig {
+public class ServletConfig {
 
     @Bean
     public InternalResourceViewResolver viewResolver() {
