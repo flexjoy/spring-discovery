@@ -7,12 +7,12 @@
 <h2>Person Information Response</h2>
 <table>
   <tr>
-    <td>ФИО :</td>
-    <td>${name}</td>
+    <td>ФИО: </td>
+    <td>${person.name}</td>
   </tr>
   <tr>
-    <td>Возраст :</td>
-    <td>${age}</td>
+    <td>Возраст: </td>
+    <td>${person.age}</td>
   </tr>
 </table>
 </body>
