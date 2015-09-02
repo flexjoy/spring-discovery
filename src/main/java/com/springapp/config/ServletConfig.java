@@ -1,13 +1,19 @@
 package com.springapp.config;
 
+import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import javax.sql.DataSource;
 
 /**
  * Servlet context.
@@ -34,5 +40,22 @@ public class ServletConfig {
         ResourceBundleMessageSource source = new ResourceBundleMessageSource();
         source.setBasename("Messages_ru");
         return source;
+    }
+
+    @Bean
+    public SpringLiquibase springLiquibase() {
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setDataSource(dataSource());
+        liquibase.setChangeLog("db.changelog.xml");
+        return liquibase;
+    }
+
+    @Bean
+    public DataSource dataSource() {
+        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+        EmbeddedDatabase db = builder
+                .setType(EmbeddedDatabaseType.H2)
+                .build();
+        return db;
     }
 }
