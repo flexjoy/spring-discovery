@@ -29,7 +29,7 @@ public class HelloController {
             return "result";
     }
 
-    @RequestMapping(value = Url.SHOW_PERSON, method = RequestMethod.POST)
+    @RequestMapping(value = Url.HOME_PAGE, method = RequestMethod.POST)
     public String handlePersonForm(@Valid Person person, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()){
             return "hello";

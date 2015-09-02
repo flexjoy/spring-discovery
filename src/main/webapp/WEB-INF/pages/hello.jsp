@@ -14,7 +14,7 @@
 
 <h2>Person Information Request</h2>
 
-<form:form method="POST" modelAttribute="person" action="<%=Url.SHOW_PERSON%>">
+<form:form method="POST" modelAttribute="person">
     <table>
         <tr>
             <td><form:label path="name">ФИО: </form:label></td>
