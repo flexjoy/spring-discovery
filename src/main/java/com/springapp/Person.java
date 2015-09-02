@@ -9,7 +9,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 /**
- * Person class
+ * Person class.
  *
  * @author Sergey Cherepanov
  */
