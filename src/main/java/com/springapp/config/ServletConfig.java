@@ -1,5 +1,6 @@
 package com.springapp.config;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +21,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan("com.springapp")
 public class ServletConfig {
 
-    @Bean
+    @Bean(name = "viewResolver")
     public ViewResolver viewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         resolver.setPrefix("/WEB-INF/pages/");
@@ -28,8 +29,8 @@ public class ServletConfig {
         return resolver;
     }
 
-    @Bean
-    public ResourceBundleMessageSource messageSource() {
+    @Bean(name = "messageSource")
+    public MessageSource messageSource() {
         ResourceBundleMessageSource source = new ResourceBundleMessageSource();
         source.setBasename("ValidationMessages");
         return source;
