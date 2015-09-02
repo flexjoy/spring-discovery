@@ -32,7 +32,7 @@ public class ServletConfig {
     @Bean(name = "messageSource")
     public MessageSource messageSource() {
         ResourceBundleMessageSource source = new ResourceBundleMessageSource();
-        source.setBasename("ValidationMessages");
+        source.setBasename("TypeMismatchMessages");
         return source;
     }
 }
