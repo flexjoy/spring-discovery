@@ -3,7 +3,9 @@ package com.springapp.config;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
- *  Spring application initializing class. Replaces web.xml file.
+ *  Spring application initializing class.
+ *
+ *  Replaces web.xml file.
  *
  * @author Sergey Cherepanov
  */

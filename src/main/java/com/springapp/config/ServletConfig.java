@@ -9,9 +9,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 /**
- * Servlet context configuration class
+ * Servlet context.
  *
- * Replaces mvc-dispatcher-servlet.xml file
+ * Replaces mvc-dispatcher-servlet.xml file.
  *
  * @author Sergey Cherepanov
  */
