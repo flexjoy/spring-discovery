@@ -22,12 +22,6 @@ public class HelloController {
 
     @Autowired DataSource dataSource;
 
-	@RequestMapping(Url.ADD_PERSON)
-	public String showForm(ModelMap model) {
-        model.addAttribute("person", new Person());
-		return "hello";
-	}
-
     @RequestMapping(Url.HOME_PAGE)
     public String showPerson(Model model) {
         try {
@@ -45,14 +39,19 @@ public class HelloController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return "result";
+        return "showPersons";
+    }
+
+    @RequestMapping(Url.ADD_PERSON)
+    public String showForm(ModelMap model) {
+        model.addAttribute("person", new Person());
+        return "addPerson";
     }
 
     @RequestMapping(value = Url.ADD_PERSON, method = RequestMethod.POST)
     public String handlePersonForm(@Valid Person person, BindingResult result, RedirectAttributes redirectAttributes) {
-        if (result.hasErrors()){
-            return "hello";
-        } else {
+        String view = "addPerson"; // if errors
+        if (!result.hasErrors()){
             try {
                 Connection conn = dataSource.getConnection();
                 String query = String.format("INSERT INTO people (name, age) VALUES ('%s', %d)", person.getName(), person.getAge());
@@ -63,7 +62,8 @@ public class HelloController {
                 e.printStackTrace();
             }
             redirectAttributes.addFlashAttribute(person);
-            return "redirect:" + Url.HOME_PAGE;
+            view = "redirect:" + Url.HOME_PAGE;
         }
+        return view;
     }
 }

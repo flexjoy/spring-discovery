@@ -21,7 +21,7 @@
         </tr>
     </c:forEach>
     <tr>
-        <td colspan="3">Totall: ${personList.size()}</td>
+        <td colspan="3">Total persons: ${personList.size()}</td>
     </tr>
 </table>
 <br>
