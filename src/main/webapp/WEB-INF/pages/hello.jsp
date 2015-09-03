@@ -3,7 +3,7 @@
 <%@ page import="com.springapp.Url" %>
 <html>
 <head>
-    <title>Request</title>
+    <title>Add new person</title>
     <style>
         .error {
             color: #ff0000;
@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<h2>Person Information Request</h2>
+<h2>Add new person:</h2>
 
 <form:form method="POST" modelAttribute="person">
     <table>
@@ -27,10 +27,12 @@
             <td><form:errors path="age" cssClass="error" /></td>
         </tr>
         <tr>
-            <td colspan="3"><input type="submit" /></td>
+            <td></td>
+            <td align="right"><input type="submit" /></td>
+            <td></td>
         </tr>
     </table>
 </form:form>
-
+<a href="<%=Url.HOME_PAGE%>">&lt; Back to person list</a>
 </body>
 </html>

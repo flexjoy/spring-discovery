@@ -25,6 +25,6 @@
     </tr>
 </table>
 <br>
-<a href="<%=Url.HOME_PAGE%>">Add new person</a>
+<a href="<%=Url.ADD_PERSON%>">Add new person</a>
 </body>
 </html>

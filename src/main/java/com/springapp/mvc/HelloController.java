@@ -22,13 +22,13 @@ public class HelloController {
 
     @Autowired DataSource dataSource;
 
-	@RequestMapping(Url.HOME_PAGE)
+	@RequestMapping(Url.ADD_PERSON)
 	public String showForm(ModelMap model) {
         model.addAttribute("person", new Person());
 		return "hello";
 	}
 
-    @RequestMapping(Url.SHOW_PERSON)
+    @RequestMapping(Url.HOME_PAGE)
     public String showPerson(Model model) {
         try {
             Connection conn = dataSource.getConnection();
@@ -48,7 +48,7 @@ public class HelloController {
         return "result";
     }
 
-    @RequestMapping(value = Url.HOME_PAGE, method = RequestMethod.POST)
+    @RequestMapping(value = Url.ADD_PERSON, method = RequestMethod.POST)
     public String handlePersonForm(@Valid Person person, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()){
             return "hello";
@@ -63,7 +63,7 @@ public class HelloController {
                 e.printStackTrace();
             }
             redirectAttributes.addFlashAttribute(person);
-            return "redirect:" + Url.SHOW_PERSON;
+            return "redirect:" + Url.HOME_PAGE;
         }
     }
 }
