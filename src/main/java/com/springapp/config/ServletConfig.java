@@ -46,7 +46,7 @@ public class ServletConfig {
     public SpringLiquibase springLiquibase() {
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setDataSource(dataSource());
-        liquibase.setChangeLog("db.changelog.xml");
+        liquibase.setChangeLog("classpath:liquibase/db.changelog.xml");
         return liquibase;
     }
 
