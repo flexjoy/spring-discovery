@@ -25,6 +25,14 @@ public class Person {
     @Max(value = 150)
     private Integer age;
 
+    public Person() {
+    }
+
+    public Person(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
+
     public String getName() {
         return name;
     }

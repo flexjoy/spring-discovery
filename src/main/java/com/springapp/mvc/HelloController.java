@@ -14,6 +14,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.sql.DataSource;
 import javax.validation.Valid;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class HelloController {
@@ -28,10 +30,22 @@ public class HelloController {
 
     @RequestMapping(Url.SHOW_PERSON)
     public String showPerson(Model model) {
-        if (model.asMap().isEmpty())
-            return "redirect:" + Url.HOME_PAGE;
-        else
-            return "result";
+        try {
+            Connection conn = dataSource.getConnection();
+            Statement st = conn.createStatement();
+            ResultSet set = st.executeQuery("SELECT * FROM people");
+            List<Person> personList = new ArrayList<>();
+            while (set.next()) {
+                String name = set.getString("name");
+                int age = set.getInt("age");
+                personList.add(new Person(name, age));
+            }
+            model.addAttribute("personList", personList);
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "result";
     }
 
     @RequestMapping(value = Url.HOME_PAGE, method = RequestMethod.POST)
