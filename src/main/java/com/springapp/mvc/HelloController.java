@@ -59,8 +59,10 @@ public class HelloController {
         if (!result.hasErrors()){
             try {
                 Connection conn = dataSource.getConnection();
-                String query = String.format("INSERT INTO people (name, age) VALUES ('%s', %d)", person.getName(), person.getAge());
+                String query = "INSERT INTO people (name, age) VALUES (?, ?)";
                 PreparedStatement stmt = conn.prepareStatement(query);
+                stmt.setString( 1, person.getName());
+                stmt.setInt(    2, person.getAge());
                 stmt.execute();
                 conn.close();
             } catch (SQLException e) {
