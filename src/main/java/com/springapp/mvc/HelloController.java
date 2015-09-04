@@ -28,23 +28,29 @@ public class HelloController {
     private DataSource dataSource;
 
     @RequestMapping(Url.HOME_PAGE)
-    public String showPerson(Model model) {
-        try {
-            Connection conn = dataSource.getConnection();
+    public String showPerson(Model model, RedirectAttributes redirectAttributes) {
+        String view = "showPersons";
+        try (Connection conn = dataSource.getConnection()) {
+
             Statement st = conn.createStatement();
             ResultSet set = st.executeQuery("SELECT * FROM people");
             List<Person> personList = new ArrayList<>();
+
             while (set.next()) {
                 String name = set.getString("name");
                 int age = set.getInt("age");
                 personList.add(new Person(name, age));
             }
+
             model.addAttribute("personList", personList);
-            conn.close();
+
         } catch (SQLException e) {
-            e.printStackTrace();
+
+            redirectAttributes.addFlashAttribute("message", e.getMessage());
+            view = "redirect:" + Url.ERROR_PAGE;
+
         }
-        return "showPersons";
+        return view;
     }
 
     @RequestMapping(Url.ADD_PERSON)
@@ -57,20 +63,27 @@ public class HelloController {
     public String handlePersonForm(@Valid Person person, BindingResult result, RedirectAttributes redirectAttributes) {
         String view = "addPerson"; // if errors
         if (!result.hasErrors()){
-            try {
-                Connection conn = dataSource.getConnection();
+            try (Connection conn = dataSource.getConnection()) {
+
                 String query = "INSERT INTO people (name, age) VALUES (?, ?)";
                 PreparedStatement stmt = conn.prepareStatement(query);
-                stmt.setString( 1, person.getName());
-                stmt.setInt(    2, person.getAge());
+                stmt.setString(1, person.getName());
+                stmt.setInt(2, person.getAge());
                 stmt.execute();
-                conn.close();
+                redirectAttributes.addFlashAttribute(person);
+                view = "redirect:" + Url.HOME_PAGE;
             } catch (SQLException e) {
-                e.printStackTrace();
+
+                redirectAttributes.addFlashAttribute("message", e.getMessage());
+                view = "redirect:" + Url.ERROR_PAGE;
+
             }
-            redirectAttributes.addFlashAttribute(person);
-            view = "redirect:" + Url.HOME_PAGE;
         }
         return view;
+    }
+
+    @RequestMapping(Url.ERROR_PAGE)
+    public String showError(Model model){
+        return "error";
     }
 }
