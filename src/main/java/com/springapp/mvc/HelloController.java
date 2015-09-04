@@ -24,7 +24,8 @@ import java.util.List;
 @Controller
 public class HelloController {
 
-    @Autowired DataSource dataSource;
+    @Autowired
+    private DataSource dataSource;
 
     @RequestMapping(Url.HOME_PAGE)
     public String showPerson(Model model) {
