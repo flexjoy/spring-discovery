@@ -33,7 +33,7 @@ public class HelloController {
         try (Connection conn = dataSource.getConnection()) {
 
             Statement st = conn.createStatement();
-            ResultSet set = st.executeQuery("SELECT * FROM people");
+            ResultSet set = st.executeQuery("SELECT name, age FROM people");
             List<Person> personList = new ArrayList<>();
 
             while (set.next()) {
