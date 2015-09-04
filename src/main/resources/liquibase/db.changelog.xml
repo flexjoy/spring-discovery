@@ -4,13 +4,16 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 		           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
     <changeSet id="create table" author="sergey">
-        <sql>
-            CREATE TABLE PEOPLE(
-            ID INT              NOT NULL AUTO_INCREMENT,
-            NAME VARCHAR(150)   NOT NULL,
-            AGE INT             NOT NULL,
-            PRIMARY KEY (id)
-            )
-        </sql>
+        <createTable tableName="people">
+            <column name="people_id" autoIncrement="true" type="int">
+                <constraints primaryKey="true"  />
+            </column>
+            <column name="name" type="varchar(150)">
+                <constraints nullable="false" />
+            </column>
+            <column name="age" type="int">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
     </changeSet>
 </databaseChangeLog>
