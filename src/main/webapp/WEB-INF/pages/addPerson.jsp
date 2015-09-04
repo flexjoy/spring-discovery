@@ -1,4 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="com.springapp.Url" %>
 <html>
@@ -33,6 +35,7 @@
         </tr>
     </table>
 </form:form>
-<a href="<%=Url.HOME_PAGE%>">&lt; Back to person list</a>
+<spring:url value="<%=Url.HOME_PAGE%>" htmlEscape="true" var="url"/>
+<a href="<c:out value="${url}" />">&lt; Back to person list</a>
 </body>
 </html>

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="com.springapp.Url" %>
 <html>
@@ -25,6 +26,7 @@
     </tr>
 </table>
 <br>
-<a href="<%=Url.ADD_PERSON%>">Add new person</a>
+<spring:url value="<%=Url.ADD_PERSON%>" htmlEscape="true" var="url"/>
+<a href="<c:out value="${url}" />">Add new person</a>
 </body>
 </html>
