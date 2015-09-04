@@ -15,7 +15,7 @@
     </tr>
     <c:forEach var="person" items="${personList}" varStatus="myIndex">
         <tr>
-            <td>${myIndex.index + 1}</td>
+            <td>${myIndex.count}</td>
             <td>${person.name}</td>
             <td>${person.age}</td>
         </tr>
