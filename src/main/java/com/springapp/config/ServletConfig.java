@@ -55,6 +55,7 @@ public class ServletConfig {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         EmbeddedDatabase db = builder
                 .setType(EmbeddedDatabaseType.H2)
+                .setName("db1")
                 .build();
         return db;
     }
