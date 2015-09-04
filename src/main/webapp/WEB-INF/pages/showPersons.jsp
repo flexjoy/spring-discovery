@@ -17,8 +17,8 @@
     <c:forEach var="person" items="${personList}" varStatus="myIndex">
         <tr>
             <td>${myIndex.count}</td>
-            <td>${person.name}</td>
-            <td>${person.age}</td>
+            <td><c:out value="${person.name}" /></td>
+            <td><c:out value="${person.age}" /></td>
         </tr>
     </c:forEach>
     <tr>

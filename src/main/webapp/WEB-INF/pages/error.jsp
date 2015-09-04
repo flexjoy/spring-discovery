@@ -21,7 +21,7 @@
 <body>
 <h2 class="error">Error!</h2>
 <div class="errorblock">
-    <p>Error message: <b>${message}</b></p>
+    <p>Error message: <b><c:out value="${message}" /></b></p>
 </div>
 <br>
 <spring:url value="<%=Url.HOME_PAGE%>" htmlEscape="true" var="url"/>
