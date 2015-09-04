@@ -1,6 +1,11 @@
 package com.springapp.config;
 
+import org.h2.server.web.WebServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.Servlet;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletRegistration;
 
 /**
  *  Spring application initializing class.
@@ -24,5 +29,14 @@ public class WebAppInit extends AbstractAnnotationConfigDispatcherServletInitial
     @Override
     protected String[] getServletMappings() {
         return new String[] { "/" };
+    }
+
+    @Override
+    protected void registerDispatcherServlet(ServletContext servletContext) {
+        super.registerDispatcherServlet(servletContext);
+        Servlet servlet = new WebServlet();
+        ServletRegistration.Dynamic h2 = servletContext.addServlet("H2Console", servlet);
+        h2.setLoadOnStartup(2);
+        h2.addMapping("/h2/*");
     }
 }
