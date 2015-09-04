@@ -28,8 +28,13 @@ public class HelloController {
     private DataSource dataSource;
 
     @RequestMapping(Url.HOME_PAGE)
+    public String showError(){
+        return "redirect:" + Url.SHOW_PERSON;
+    }
+
+    @RequestMapping(Url.SHOW_PERSON)
     public String showPerson(Model model, RedirectAttributes redirectAttributes) {
-        String view = "showPersons";
+        String view = Url.SHOW_PERSON;
         try (Connection conn = dataSource.getConnection()) {
 
             Statement st = conn.createStatement();
@@ -54,14 +59,13 @@ public class HelloController {
     }
 
     @RequestMapping(Url.ADD_PERSON)
-    public String showForm(ModelMap model) {
+    public void showForm(ModelMap model) {
         model.addAttribute("person", new Person());
-        return "addPerson";
     }
 
     @RequestMapping(value = Url.ADD_PERSON, method = RequestMethod.POST)
     public String handlePersonForm(@Valid Person person, BindingResult result, RedirectAttributes redirectAttributes) {
-        String view = "addPerson"; // if errors
+        String view = Url.ADD_PERSON; // if errors
         if (!result.hasErrors()){
             try (Connection conn = dataSource.getConnection()) {
 
@@ -71,7 +75,7 @@ public class HelloController {
                 stmt.setInt(2, person.getAge());
                 stmt.execute();
                 redirectAttributes.addFlashAttribute(person);
-                view = "redirect:" + Url.HOME_PAGE;
+                view = "redirect:" + Url.SHOW_PERSON;
             } catch (SQLException e) {
 
                 redirectAttributes.addFlashAttribute("message", e.getMessage());
@@ -83,7 +87,6 @@ public class HelloController {
     }
 
     @RequestMapping(Url.ERROR_PAGE)
-    public String showError(Model model){
-        return "error";
+    public void showError(Model model){
     }
 }

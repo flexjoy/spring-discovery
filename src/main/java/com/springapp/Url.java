@@ -7,6 +7,7 @@ package com.springapp;
  */
 public final class Url {
     public static final String HOME_PAGE = "/";
-    public static final String ADD_PERSON = "/addPerson";
+    public static final String SHOW_PERSON = "/person/show";
+    public static final String ADD_PERSON = "/person/add";
     public static final String ERROR_PAGE = "/error";
 }
