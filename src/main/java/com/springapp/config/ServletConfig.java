@@ -1,5 +1,7 @@
 package com.springapp.config;
 
+import com.springapp.PersonDAO;
+import com.springapp.PersonDAOImpl;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -58,5 +60,10 @@ public class ServletConfig {
                 .setName("db1")
                 .build();
         return db;
+    }
+
+    @Bean(name = "personDAO")
+    public PersonDAO personDAO() {
+       return new PersonDAOImpl(dataSource());
     }
 }
