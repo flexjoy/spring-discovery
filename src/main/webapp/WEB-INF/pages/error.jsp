@@ -15,16 +15,25 @@
             border: 1px solid #ff0000;
             padding: 10px;
             margin: 5px;
+            font-size: 0.8em;
         }
     </style>
 </head>
 <body>
 <h2 class="error">Error!</h2>
-<div class="errorblock">
-    <p>Error message: <b><c:out value="${message}" /></b></p>
+<div>
+    <p><b>${name}: </b>${exception.message}</p>
 </div>
-<br>
 <spring:url value="<%=Url.HOME_PAGE%>" htmlEscape="true" var="url"/>
 <a href="<c:out value="${url}" />">&lt; Back to home page</a>
+<br>
+<br>
+<div class="errorblock">
+    <b>Detailed information:</b>
+        <br>
+    <c:forEach items="${exception.stackTrace}" var="ste">
+        ${ste}
+    </c:forEach>
+</div>
 </body>
 </html>

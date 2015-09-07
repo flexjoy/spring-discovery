@@ -14,10 +14,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.sql.DataSource;
 import javax.validation.Valid;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,12 +27,12 @@ public class HelloController {
     private DataSource dataSource;
 
     @RequestMapping(Url.HOME_PAGE)
-    public String showError(){
+    public String rootRedirect(){
         return "redirect:" + Url.SHOW_PERSON;
     }
 
     @RequestMapping(Url.SHOW_PERSON)
-    public String showPerson(Model model, RedirectAttributes redirectAttributes) {
+    public void showPerson(Model model, RedirectAttributes redirectAttributes) throws Exception {
         String view = Url.SHOW_PERSON;
         try (Connection conn = dataSource.getConnection(); Statement st = conn.createStatement()) {
             try (ResultSet set = st.executeQuery("SELECT name, age FROM people")) {
@@ -45,13 +44,7 @@ public class HelloController {
                 }
                 model.addAttribute("personList", personList);
             }
-        } catch (SQLException e) {
-
-            redirectAttributes.addFlashAttribute("message", e.getMessage());
-            view = "redirect:" + Url.ERROR_PAGE;
-
         }
-        return view;
     }
 
     @RequestMapping(Url.ADD_PERSON)
@@ -60,7 +53,7 @@ public class HelloController {
     }
 
     @RequestMapping(value = Url.ADD_PERSON, method = RequestMethod.POST)
-    public String handlePersonForm(@Valid Person person, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String handlePersonForm(@Valid Person person, BindingResult result, RedirectAttributes redirectAttributes) throws Exception {
         String view = Url.ADD_PERSON; // if errors
         if (!result.hasErrors()){
             try (Connection conn = dataSource.getConnection()) {
@@ -72,17 +65,8 @@ public class HelloController {
                 }
                 redirectAttributes.addFlashAttribute(person);
                 view = "redirect:" + Url.SHOW_PERSON;
-            } catch (SQLException e) {
-
-                redirectAttributes.addFlashAttribute("message", e.getMessage());
-                view = "redirect:" + Url.ERROR_PAGE;
-
             }
         }
         return view;
-    }
-
-    @RequestMapping(Url.ERROR_PAGE)
-    public void showError(Model model){
     }
 }
