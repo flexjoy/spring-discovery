@@ -35,20 +35,16 @@ public class HelloController {
     @RequestMapping(Url.SHOW_PERSON)
     public String showPerson(Model model, RedirectAttributes redirectAttributes) {
         String view = Url.SHOW_PERSON;
-        try (Connection conn = dataSource.getConnection()) {
-
-            Statement st = conn.createStatement();
-            ResultSet set = st.executeQuery("SELECT name, age FROM people");
-            List<Person> personList = new ArrayList<>();
-
-            while (set.next()) {
-                String name = set.getString("name");
-                int age = set.getInt("age");
-                personList.add(new Person(name, age));
+        try (Connection conn = dataSource.getConnection(); Statement st = conn.createStatement()) {
+            try (ResultSet set = st.executeQuery("SELECT name, age FROM people")) {
+                List<Person> personList = new ArrayList<>();
+                while (set.next()) {
+                    String name = set.getString("name");
+                    int age = set.getInt("age");
+                    personList.add(new Person(name, age));
+                }
+                model.addAttribute("personList", personList);
             }
-
-            model.addAttribute("personList", personList);
-
         } catch (SQLException e) {
 
             redirectAttributes.addFlashAttribute("message", e.getMessage());
@@ -68,12 +64,12 @@ public class HelloController {
         String view = Url.ADD_PERSON; // if errors
         if (!result.hasErrors()){
             try (Connection conn = dataSource.getConnection()) {
-
                 String query = "INSERT INTO people (name, age) VALUES (?, ?)";
-                PreparedStatement stmt = conn.prepareStatement(query);
-                stmt.setString(1, person.getName());
-                stmt.setInt(2, person.getAge());
-                stmt.execute();
+                try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                    stmt.setString(1, person.getName());
+                    stmt.setInt(2, person.getAge());
+                    stmt.execute();
+                }
                 redirectAttributes.addFlashAttribute(person);
                 view = "redirect:" + Url.SHOW_PERSON;
             } catch (SQLException e) {
