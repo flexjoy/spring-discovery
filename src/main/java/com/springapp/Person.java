@@ -15,6 +15,8 @@ import javax.validation.constraints.NotNull;
  */
 public class Person {
 
+    long id;
+
     @NotBlank
     @Length(min = 3, max = 50)
     private String name;
@@ -31,6 +33,14 @@ public class Person {
     public Person(String name, Integer age) {
         this.name = name;
         this.age = age;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {

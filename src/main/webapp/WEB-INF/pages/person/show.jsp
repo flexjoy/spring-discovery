@@ -6,14 +6,18 @@
 <h2>Person list:</h2>
 <table border="1" cellpadding="5" cellspacing="0">
     <tr>
-        <th>#</th>
+        <th>№</th>
         <th>Name</th>
         <th>Age</th>
     </tr>
     <c:forEach var="person" items="${personList}" varStatus="myIndex">
         <tr>
             <td>${myIndex.count}</td>
-            <td><c:out value="${person.name}" /></td>
+            <td>
+                <c:set var="subUrl" scope="session" value="<%=Url.PERSON_DETAIL%>"/>
+                <spring:url value="${subUrl}/${person.id}" htmlEscape="true" var="url"/>
+                <a href="<c:out value="${url}" />"><c:out value="${person.name}" /></a>
+            </td>
             <td><c:out value="${person.age}" /></td>
         </tr>
     </c:forEach>

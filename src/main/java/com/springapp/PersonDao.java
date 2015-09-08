@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface PersonDao {
 
-    void insert(Person person);
+    long insert(Person person);
     List<Person> selectAll();
+    Person selectPerson(long id);
 }
