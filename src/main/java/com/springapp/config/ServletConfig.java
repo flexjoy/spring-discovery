@@ -1,12 +1,11 @@
 package com.springapp.config;
 
-import com.springapp.PersonDAO;
-import com.springapp.PersonDAOImpl;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -27,6 +26,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.springapp")
+@Import(DaoConfig.class)
 public class ServletConfig {
 
     @Bean(name = "viewResolver")
@@ -60,10 +60,5 @@ public class ServletConfig {
                 .setName("db1")
                 .build();
         return db;
-    }
-
-    @Bean(name = "personDAO")
-    public PersonDAO personDAO() {
-       return new PersonDAOImpl(dataSource());
     }
 }

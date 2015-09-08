@@ -1,7 +1,7 @@
 package com.springapp.mvc;
 
 import com.springapp.Person;
-import com.springapp.PersonDAO;
+import com.springapp.PersonDao;
 import com.springapp.Url;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,33 +17,29 @@ import javax.validation.Valid;
 public class HelloController {
 
     @Autowired
-    private PersonDAO personDAO;
+    private PersonDao personDao;
 
     @RequestMapping(Url.HOME_PAGE)
     public String rootRedirect(){
-
         return "redirect:" + Url.SHOW_PERSON;
     }
 
     @RequestMapping(Url.SHOW_PERSON)
     public void showPerson(Model model) {
-
         String view = Url.SHOW_PERSON;
-        model.addAttribute("personList", personDAO.SelectAll());
+        model.addAttribute("personList", personDao.selectAll());
     }
 
     @RequestMapping(Url.ADD_PERSON)
     public void showForm(ModelMap model) {
-
         model.addAttribute("person", new Person());
     }
 
     @RequestMapping(value = Url.ADD_PERSON, method = RequestMethod.POST)
     public String handlePersonForm(@Valid Person person, BindingResult result) {
-
         String view = null; // if errors
         if (!result.hasErrors()){
-            personDAO.Insert(person);
+            personDao.insert(person);
             view = "redirect:" + Url.SHOW_PERSON;
         }
         return view;

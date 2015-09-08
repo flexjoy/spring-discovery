@@ -11,25 +11,23 @@ import java.util.List;
  *
  * @author Sergey Cherepanov
  */
-public class PersonDAOImpl implements PersonDAO {
+public class PersonDaoImpl implements PersonDao {
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
-    public PersonDAOImpl(DataSource dataSource) {
+    public PersonDaoImpl(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Override
-    public void Insert(Person person) {
-
+    public void insert(Person person) {
         String query = "INSERT INTO people (name, age) VALUES (?, ?)";
-        Object[] objects = new Object[] { person.getName(), person.getAge()};
+        Object[] objects = new Object[] {person.getName(), person.getAge()};
         jdbcTemplate.update(query, objects);
     }
 
     @Override
-    public List<Person> SelectAll() {
-
+    public List<Person> selectAll() {
         String query = "SELECT name, age FROM people";
         BeanPropertyRowMapper mapper = new BeanPropertyRowMapper(Person.class);
         return jdbcTemplate.query(query, mapper);

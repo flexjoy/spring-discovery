@@ -7,8 +7,8 @@ import java.util.List;
  *
  * @author Sergey Cherepanov
  */
-public interface PersonDAO {
+public interface PersonDao {
 
-    public void Insert(Person person);
-    public List<Person> SelectAll();
+    void insert(Person person);
+    List<Person> selectAll();
 }
