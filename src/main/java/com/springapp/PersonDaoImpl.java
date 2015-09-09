@@ -50,14 +50,12 @@ public class PersonDaoImpl implements PersonDao {
     }
 
     @Override
-    public Person findById(long id) throws Exception {
+    public Person findById(long id) {
         String query = "SELECT id, name, age FROM people WHERE id = :id";
-        SqlParameterSource paramSource = new MapSqlParameterSource("id", id);
+        Map<String, Long> map = new HashMap<>();
+        map.put("id", id);
         BeanPropertyRowMapper mapper = new BeanPropertyRowMapper(Person.class);
-        List<Person> list = jdbcTemplate.query(query, paramSource, mapper);
-        if (list.size() == 0)
-            throw new Exception(messageSource.getMessage("personNotExist", null, Locale.getDefault()));
-        return list.get(0);
+        return (Person)jdbcTemplate.queryForObject(query, map, mapper);
     }
 
     private SqlParameterSource buildParameterSource(Person person) {

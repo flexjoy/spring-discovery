@@ -11,5 +11,5 @@ public interface PersonDao {
 
     long insert(Person person) throws Exception;
     List<Person> selectAll();
-    Person findById(long id) throws Exception;
+    Person findById(long id);
 }

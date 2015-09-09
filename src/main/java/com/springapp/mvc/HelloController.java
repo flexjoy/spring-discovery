@@ -47,7 +47,7 @@ public class HelloController {
     }
 
     @RequestMapping(Url.PERSON + "{id}")
-    public String personDetail(@PathVariable(value="id") long id, Model model) throws Exception {
+    public String personDetail(@PathVariable(value="id") long id, Model model) {
         Person person = personDao.findById(id);
         model.addAttribute("person", person);
         return Url.PERSON + "person";
