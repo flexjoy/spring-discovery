@@ -34,12 +34,8 @@ public class PersonDaoImpl implements PersonDao {
     @Override
     public long insert(Person person) throws Exception {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        Map<String, Object> namedParameters = new HashMap<>();
-        namedParameters .put("name", person.getName());
-        namedParameters .put("age", person.getAge());
-        SqlParameterSource paramSource = new MapSqlParameterSource(namedParameters );
         String query = "INSERT INTO people (name, age) VALUES (:name, :age)";
-        jdbcTemplate.update(query, paramSource, keyHolder);
+        jdbcTemplate.update(query, buildParameterSource(person), keyHolder);
         long id  = keyHolder.getKey().longValue();
         if (!(id > 0))
             throw new Exception(messageSource.getMessage("addPersonError", null, Locale.getDefault()));
@@ -62,5 +58,12 @@ public class PersonDaoImpl implements PersonDao {
         if (list.size() == 0)
             throw new Exception(messageSource.getMessage("personNotExist", null, Locale.getDefault()));
         return list.get(0);
+    }
+
+    private SqlParameterSource buildParameterSource(Person person) {
+        Map<String, Object>  map = new HashMap<>();
+        map.put("name", person.getName());
+        map.put("age", person.getAge());
+        return new MapSqlParameterSource(map);
     }
 }
