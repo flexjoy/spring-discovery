@@ -48,17 +48,17 @@ public class HelloController {
             long id = personDao.insert(person);
             if (id <= 0)
                 throw new Exception(messageSource.getMessage("addPersonError", null, Locale.getDefault()));
-            view = String.format("redirect:%s/%d", Url.PERSON_DETAIL, id);
+            view = String.format("redirect:%s%d", Url.PERSON, id);
         }
         return view;
     }
 
-    @RequestMapping(Url.PERSON_DETAIL + "/{id}")
+    @RequestMapping(Url.PERSON + "{id}")
     public String personDetail(@PathVariable(value="id") long id, Model model) throws Exception {
-        Person person = personDao.selectPerson(id);
+        Person person = personDao.findById(id);
         if (person == null)
             throw new Exception(messageSource.getMessage("personNotExist", null, Locale.getDefault()));
         model.addAttribute("person", person);
-        return Url.PERSON_DETAIL;
+        return Url.PERSON + "person";
     }
 }

@@ -14,8 +14,8 @@
         <tr>
             <td>${myIndex.count}</td>
             <td>
-                <c:set var="subUrl" scope="session" value="<%=Url.PERSON_DETAIL%>"/>
-                <spring:url value="${subUrl}/${person.id}" htmlEscape="true" var="url"/>
+                <c:set var="subUrl" scope="session" value="<%=Url.PERSON%>"/>
+                <spring:url value="${subUrl}${person.id}" htmlEscape="true" var="url"/>
                 <a href="<c:out value="${url}" />"><c:out value="${person.name}" /></a>
             </td>
             <td><c:out value="${person.age}" /></td>

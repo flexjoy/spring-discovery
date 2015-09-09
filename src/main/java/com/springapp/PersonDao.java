@@ -11,5 +11,5 @@ public interface PersonDao {
 
     long insert(Person person);
     List<Person> selectAll();
-    Person selectPerson(long id);
+    Person findById(long id);
 }

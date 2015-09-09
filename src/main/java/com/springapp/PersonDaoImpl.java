@@ -45,7 +45,7 @@ public class PersonDaoImpl implements PersonDao {
     }
 
     @Override
-    public Person selectPerson(long id) {
+    public Person findById(long id) {
         String query = "SELECT id, name, age FROM people WHERE id = :id";
         SqlParameterSource paramSource = new MapSqlParameterSource("id", id);
         BeanPropertyRowMapper mapper = new BeanPropertyRowMapper(Person.class);
