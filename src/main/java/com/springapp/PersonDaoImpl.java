@@ -31,7 +31,7 @@ public class PersonDaoImpl implements PersonDao {
     }
 
     @Override
-    public long insert(Person person) throws Exception {
+    public long insert(Person person) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         String query = "INSERT INTO people (name, age) VALUES (:name, :age)";
         jdbcTemplate.update(query, buildParameterSource(person), keyHolder);

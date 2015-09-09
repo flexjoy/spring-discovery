@@ -28,7 +28,6 @@ public class HelloController {
 
     @RequestMapping(Url.SHOW_PERSON)
     public void showPerson(Model model) {
-        String view = Url.SHOW_PERSON;
         model.addAttribute("personList", personDao.selectAll());
     }
 
