@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 
@@ -41,15 +42,17 @@ public class HelloController {
         String view = null; // if errors
         if (!result.hasErrors()){
             long id = personDao.insert(person);
-            view = String.format("redirect:%s%d", Url.PERSON, id);
+            UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(Url.PERSON);
+            view = "redirect:" + builder.buildAndExpand(id).toString();
         }
         return view;
     }
 
-    @RequestMapping(Url.PERSON + "{id}")
+    @RequestMapping(Url.PERSON)
     public String personDetail(@PathVariable("id") long id, Model model) {
         Person person = personDao.findById(id);
         model.addAttribute("person", person);
-        return Url.PERSON + "person";
+        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(Url.PERSON);
+        return builder.buildAndExpand("person").toString();
     }
 }
