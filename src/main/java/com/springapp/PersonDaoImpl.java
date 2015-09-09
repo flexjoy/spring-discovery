@@ -12,7 +12,6 @@ import org.springframework.jdbc.support.KeyHolder;
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -36,10 +35,7 @@ public class PersonDaoImpl implements PersonDao {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         String query = "INSERT INTO people (name, age) VALUES (:name, :age)";
         jdbcTemplate.update(query, buildParameterSource(person), keyHolder);
-        long id  = keyHolder.getKey().longValue();
-        if (!(id > 0))
-            throw new Exception(messageSource.getMessage("addPersonError", null, Locale.getDefault()));
-        return id;
+        return keyHolder.getKey().longValue();
     }
 
     @Override
