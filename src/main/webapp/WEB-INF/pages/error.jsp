@@ -20,7 +20,7 @@
 <div>
     <p><b>${name}: </b>${exception.message}</p>
 </div>
-<spring:url value="<%=Url.HOME_PAGE%>" htmlEscape="true" var="url"/>
+<spring:url value="<%=Url.HOME_PAGE%>" var="url"/>
 <a href="<c:out value="${url}" />">&lt; Back to home page</a>
 <br>
 <br>

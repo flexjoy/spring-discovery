@@ -19,8 +19,8 @@
     </tr>
 </table>
 <br>
-<spring:url value="<%=Url.SHOW_PERSON%>" htmlEscape="true" var="url1"/>
-<spring:url value="<%=Url.ADD_PERSON%>" htmlEscape="true" var="url2"/>
+<spring:url value="<%=Url.SHOW_PERSON%>" var="url1"/>
+<spring:url value="<%=Url.ADD_PERSON%>" var="url2"/>
 <a href="<c:out value="${url1}" />">&lt; Back to person list</a> |
 <a href="<c:out value="${url2}" />">Add new person</a>
 </body>
