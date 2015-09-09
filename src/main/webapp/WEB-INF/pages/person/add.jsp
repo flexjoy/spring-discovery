@@ -30,7 +30,7 @@
         </tr>
     </table>
 </form:form>
-<spring:url value="<%=Url.SHOW_PERSON%>" var="url"/>
-<a href="<c:out value="${url}" />">&lt; Back to person list</a>
+<spring:url value="<%=Url.SHOW_PERSON%>" var="showPersonUrl"/>
+<a href="<c:out value="${showPersonUrl}" />">&lt; Back to person list</a>
 </body>
 </html>

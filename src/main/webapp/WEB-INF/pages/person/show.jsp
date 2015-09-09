@@ -26,7 +26,7 @@
     </tr>
 </table>
 <br>
-<spring:url value="<%=Url.ADD_PERSON%>" var="url"/>
-<a href="<c:out value="${url}" />">Add new person</a>
+<spring:url value="<%=Url.ADD_PERSON%>" var="addPersonUrl"/>
+<a href="<c:out value="${addPersonUrl}" />">Add new person</a>
 </body>
 </html>
