@@ -14,15 +14,17 @@
         <tr>
             <td>${myIndex.count}</td>
             <td>
-                <c:set var="subUrl" scope="session" value="<%=Url.PERSON%>"/>
-                <spring:url value="${subUrl}${person.id}" var="url"/>
-                <a href="<c:out value="${url}" />"><c:out value="${person.name}" /></a>
+                <a href="<c:out value="${person.id}" />">
+                    <c:out value="${person.name}" />
+                </a>
             </td>
             <td><c:out value="${person.age}" /></td>
         </tr>
     </c:forEach>
     <tr>
-        <td colspan="3">Total persons: ${personList.size()}</td>
+        <td colspan="3">
+            Total persons: <c:out value="${personList.size()}" />
+        </td>
     </tr>
 </table>
 <br>
