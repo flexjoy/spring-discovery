@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface PersonDao {
 
-    long insert(Person person);
+    long insert(Person person) throws Exception;
     List<Person> selectAll();
-    Person findById(long id);
+    Person findById(long id) throws Exception;
 }
