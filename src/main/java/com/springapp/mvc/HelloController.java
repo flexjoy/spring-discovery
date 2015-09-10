@@ -41,8 +41,11 @@ public class HelloController {
         String view = null; // if errors
         if (!result.hasErrors()){
             long id = personDao.insert(person);
-            UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(Url.PERSON);
-            view = "redirect:" + builder.buildAndExpand(id).toString();
+            String dstUrl = UriComponentsBuilder
+                    .fromUriString(Url.PERSON)
+                    .buildAndExpand(id)
+                    .toString();
+            view = "redirect:" + dstUrl;
         }
         return view;
     }
@@ -51,7 +54,10 @@ public class HelloController {
     public String personDetail(@PathVariable("id") long id, Model model) {
         Person person = personDao.findById(id);
         model.addAttribute("person", person);
-        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(Url.PERSON);
-        return builder.buildAndExpand("person").toString();
+        String view = UriComponentsBuilder
+                .fromUriString(Url.PERSON)
+                .buildAndExpand("person")
+                .toString();
+        return view;
     }
 }
