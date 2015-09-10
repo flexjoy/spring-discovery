@@ -54,7 +54,7 @@ public class PersonDaoImpl implements PersonDao {
         return (Person)jdbcTemplate.queryForObject(query, map, mapper);
     }
 
-    private SqlParameterSource buildParameterSource(Person person) {
+    private static SqlParameterSource buildParameterSource(Person person) {
         Map<String, Object>  map = new HashMap<>();
         map.put("name", person.getName());
         map.put("age", person.getAge());
