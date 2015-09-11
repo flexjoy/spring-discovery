@@ -47,4 +47,16 @@ public class PersonDaoImpl implements PersonDao {
                 .executeUpdate();
         System.out.println("DELETED entities: " + n);
     }
+
+    @Override
+    @Transactional
+    public void edit(Person person) {
+        int n = em.createQuery(
+                "UPDATE Person p SET p.name = :name, p.age = :age WHERE p.id = :id")
+                .setParameter("id", person.getId())
+                .setParameter("name", person.getName())
+                .setParameter("age", person.getAge())
+                .executeUpdate();
+        System.out.println("UPDATED entities: " + n);
+    }
 }

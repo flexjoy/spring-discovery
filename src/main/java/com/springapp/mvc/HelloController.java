@@ -66,4 +66,25 @@ public class HelloController {
         personDao.delete(id);
         return "redirect:" + Url.SHOW_PERSON;
     }
+
+    @RequestMapping(Url.EDIT_PERSON)
+    public String editPerson(@PathVariable("id") long id, Model model) {
+        Person person = personDao.findById(id);
+        model.addAttribute("person", person);
+        return "/person/edit";
+    }
+
+    @RequestMapping(value = Url.EDIT_PERSON, method = RequestMethod.POST)
+    public String handleEditForm(@PathVariable("id") long id, @Valid Person person, BindingResult result) {
+        String view = "/person/edit"; // if errors
+        if (!result.hasErrors()) {
+            personDao.edit(person);
+            String dstUrl = UriComponentsBuilder
+                    .fromUriString(Url.PERSON)
+                    .buildAndExpand(id)
+                    .toString();
+            view = "redirect:" + dstUrl;
+        }
+        return view;
+    }
 }

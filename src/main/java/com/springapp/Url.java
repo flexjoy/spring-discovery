@@ -12,4 +12,5 @@ public final class Url {
     public static final String ERROR_PAGE = "/error";
     public static final String PERSON = "/person/{id}";
     public static final String DELETE_PERSON = "/person/delete/{id}";
+    public static final String EDIT_PERSON = "/person/edit/{id}";
 }

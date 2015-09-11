@@ -32,6 +32,10 @@
             <td><c:out value="${person.age}" /></td>
             <td>
                 <a href="#" onclick="confirm_delete(${person.id})">Delete</a>
+                <spring:url value="<%=Url.EDIT_PERSON%>" var="editPersonUrl">
+                    <spring:param name="id" value="${person.id}" />
+                </spring:url>
+                <a href="<c:out value="${editPersonUrl}" />">Edit</a>
             </td>
         </tr>
     </c:forEach>
