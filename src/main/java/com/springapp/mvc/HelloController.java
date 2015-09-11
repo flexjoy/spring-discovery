@@ -37,7 +37,7 @@ public class HelloController {
     }
 
     @RequestMapping(value = Url.ADD_PERSON, method = RequestMethod.POST)
-    public String handlePersonForm(@Valid Person person, BindingResult result) throws Exception {
+    public String handlePersonForm(@Valid Person person, BindingResult result) {
         String view = null; // if errors
         if (!result.hasErrors()){
             long id = personDao.insert(person);
