@@ -32,31 +32,18 @@ public class PersonDaoImpl implements PersonDao {
 
     @Override
     public Person findById(long id) {
-        return em.createQuery(
-                "SELECT p FROM Person p WHERE p.id = :id", Person.class)
-                .setParameter("id", id)
-                .getSingleResult();
+        return em.find(Person.class, id);
     }
 
     @Override
     @Transactional
     public void delete(long id) {
-        int n = em.createQuery(
-                "DELETE FROM Person p WHERE p.id = :id")
-                .setParameter("id", id)
-                .executeUpdate();
-        System.out.println("DELETED entities: " + n);
+        em.remove(em.find(Person.class, id));
     }
 
     @Override
     @Transactional
     public void edit(Person person) {
-        int n = em.createQuery(
-                "UPDATE Person p SET p.name = :name, p.age = :age WHERE p.id = :id")
-                .setParameter("id", person.getId())
-                .setParameter("name", person.getName())
-                .setParameter("age", person.getAge())
-                .executeUpdate();
-        System.out.println("UPDATED entities: " + n);
+        em.merge(person);
     }
 }
