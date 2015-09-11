@@ -3,6 +3,10 @@ package com.springapp;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -13,9 +17,13 @@ import javax.validation.constraints.NotNull;
  *
  * @author Sergey Cherepanov
  */
+@Entity
+@Table(name = "people")
 public class Person {
 
-    long id;
+    @Id
+    @GeneratedValue
+    private long id;
 
     @NotBlank
     @Length(min = 3, max = 50)
