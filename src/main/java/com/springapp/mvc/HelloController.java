@@ -60,4 +60,10 @@ public class HelloController {
                 .toString();
         return view;
     }
+
+    @RequestMapping(Url.DELETE_PERSON)
+    public String deletePerson(@PathVariable("id") long id) {
+        personDao.delete(id);
+        return "redirect:" + Url.SHOW_PERSON;
+    }
 }

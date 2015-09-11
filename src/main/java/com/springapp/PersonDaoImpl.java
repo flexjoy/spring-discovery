@@ -37,4 +37,14 @@ public class PersonDaoImpl implements PersonDao {
                 .setParameter("id", id)
                 .getSingleResult();
     }
+
+    @Override
+    @Transactional
+    public void delete(long id) {
+        int n = em.createQuery(
+                "DELETE FROM Person p WHERE p.id = :id")
+                .setParameter("id", id)
+                .executeUpdate();
+        System.out.println("DELETED entities: " + n);
+    }
 }

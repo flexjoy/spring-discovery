@@ -12,4 +12,5 @@ public interface PersonDao {
     long insert(Person person);
     List<Person> selectAll();
     Person findById(long id);
+    void delete(long id);
 }
