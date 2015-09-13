@@ -36,7 +36,7 @@ public class HelloController {
         model.addAttribute("person", new Person());
     }
 
-    @RequestMapping(value = Url.ADD_PERSON, method = RequestMethod.POST)
+    @RequestMapping(value = Url.ADD_PERSON, method = RequestMethod.PUT)
     public String handlePersonForm(@Valid Person person, BindingResult result) {
         String view = null; // if errors
         if (!result.hasErrors()){
