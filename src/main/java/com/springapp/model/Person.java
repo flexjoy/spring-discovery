@@ -1,4 +1,4 @@
-package com.springapp;
+package com.springapp.model;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;

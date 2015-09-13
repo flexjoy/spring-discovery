@@ -28,7 +28,7 @@ public class JpaConfig {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
         em.setPersistenceProviderClass(HibernatePersistence.class);
-        em.setPackagesToScan("com.springapp");
+        em.setPackagesToScan("com.springapp.model");
         em.setJpaProperties(hibProperties());
         return em;
     }

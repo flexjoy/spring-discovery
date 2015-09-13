@@ -1,5 +1,7 @@
 package com.springapp;
 
+import com.springapp.model.Person;
+
 import java.util.List;
 
 /**

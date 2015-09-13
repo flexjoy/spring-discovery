@@ -1,5 +1,6 @@
 package com.springapp;
 
+import com.springapp.model.Person;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;

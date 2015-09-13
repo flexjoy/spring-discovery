@@ -1,6 +1,6 @@
 package com.springapp.mvc;
 
-import com.springapp.Person;
+import com.springapp.model.Person;
 import com.springapp.PersonDao;
 import com.springapp.Url;
 import org.springframework.beans.factory.annotation.Autowired;
