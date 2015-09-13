@@ -61,8 +61,14 @@ public class HelloController {
         return view;
     }
 
-    @RequestMapping(Url.DELETE_PERSON)
-    public String deletePerson(@PathVariable("id") long id) {
+    // Confirm delete person when JavaScript is disabled
+    @RequestMapping(Url.CONFIRM_DELETE)
+    public String confirmDelete(@PathVariable("id") long id) {
+        return "confirmDelete";
+    }
+
+    @RequestMapping(value = Url.DELETE_PERSON, method = RequestMethod.DELETE)
+    public String deletePerson(long id) {
         personDao.delete(id);
         return "redirect:" + Url.SHOW_PERSON;
     }

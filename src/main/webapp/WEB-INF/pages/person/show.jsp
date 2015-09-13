@@ -2,13 +2,27 @@
 <head>
     <title>Person list</title>
     <script type="text/javascript">
-        function confirm_delete(id){
-            if(confirm("Delete person?"))
-            {
-                var url = "<%=Url.DELETE_PERSON%>".replace("{id}", id);
-                window.location = url;
-            }
-            return false;
+        function confirm_delete(id) {
+            if (!confirm("Delete person?")) return false;
+
+            var form = document.createElement("form");
+            form.setAttribute("method", "POST");
+            form.setAttribute("action", "<%=Url.DELETE_PERSON%>");
+
+            var field = document.createElement("input");
+            field.setAttribute("type", "hidden");
+            field.setAttribute("name", "_method");
+            field.setAttribute("value", "delete");
+            form.appendChild(field);
+
+            field = document.createElement("input");
+            field.setAttribute("type", "hidden");
+            field.setAttribute("name", "id");
+            field.setAttribute("value", id);
+            form.appendChild(field);
+
+            document.body.appendChild(form);
+            form.submit();
         }
     </script>
 </head>
@@ -31,11 +45,14 @@
             </td>
             <td><c:out value="${person.age}" /></td>
             <td>
-                <a href="#" onclick="confirm_delete(${person.id})">Delete</a>
+                <spring:url value="<%=Url.CONFIRM_DELETE%>" var="confirmDeleteUrl">
+                    <spring:param name="id" value="${person.id}" />
+                </spring:url>
+                <a href="${confirmDeleteUrl}" onclick="confirm_delete(${person.id});  return false;">Delete</a>
                 <spring:url value="<%=Url.EDIT_PERSON%>" var="editPersonUrl">
                     <spring:param name="id" value="${person.id}" />
                 </spring:url>
-                <a href="<c:out value="${editPersonUrl}" />">Edit</a>
+                <a href="${editPersonUrl}">Edit</a>
             </td>
         </tr>
     </c:forEach>
