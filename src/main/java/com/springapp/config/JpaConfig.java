@@ -1,6 +1,6 @@
 package com.springapp.config;
 
-import org.hibernate.ejb.HibernatePersistence;
+import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,7 +30,7 @@ public class JpaConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
-        em.setPersistenceProviderClass(HibernatePersistence.class);
+        em.setPersistenceProviderClass(HibernatePersistenceProvider.class);
         em.setPackagesToScan("com.springapp.model");
         em.setJpaProperties(hibProperties());
         return em;
