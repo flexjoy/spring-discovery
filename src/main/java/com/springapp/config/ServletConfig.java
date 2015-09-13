@@ -42,7 +42,7 @@ public class ServletConfig {
         return source;
     }
 
-    @Bean
+    @Bean(name = "springLiquibase")
     public SpringLiquibase springLiquibase() {
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setDataSource(dataSource());

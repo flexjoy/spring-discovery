@@ -4,13 +4,8 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 		           http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
     <changeSet id="create table" author="sergey">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <tableExists tableName="people"/>
-            </not>
-        </preConditions>
         <createTable tableName="people">
-            <column name="id" autoIncrement="true" type="int">
+            <column name="id" autoIncrement="true" type="bigint">
                 <constraints primaryKey="true"  />
             </column>
             <column name="name" type="varchar(150)">
