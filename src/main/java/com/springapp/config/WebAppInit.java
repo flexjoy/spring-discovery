@@ -1,10 +1,12 @@
 package com.springapp.config;
 
 import org.h2.server.web.WebServlet;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
 /**
@@ -38,5 +40,13 @@ public class WebAppInit extends AbstractAnnotationConfigDispatcherServletInitial
         ServletRegistration.Dynamic h2 = servletContext.addServlet("H2Console", servlet);
         h2.setLoadOnStartup(2);
         h2.addMapping("/h2/*");
+    }
+
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
+        servletContext
+                .addFilter("hiddenHttpMethodFilter", new HiddenHttpMethodFilter())
+                .addMappingForUrlPatterns(null, true, "/*");
     }
 }
