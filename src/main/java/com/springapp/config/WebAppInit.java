@@ -4,9 +4,9 @@ import org.h2.server.web.WebServlet;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.Filter;
 import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
 /**
@@ -43,10 +43,7 @@ public class WebAppInit extends AbstractAnnotationConfigDispatcherServletInitial
     }
 
     @Override
-    public void onStartup(ServletContext servletContext) throws ServletException {
-        super.onStartup(servletContext);
-        servletContext
-                .addFilter("hiddenHttpMethodFilter", new HiddenHttpMethodFilter())
-                .addMappingForUrlPatterns(null, true, "/*");
+    protected Filter[] getServletFilters() {
+        return new Filter[] {new HiddenHttpMethodFilter()};
     }
 }
