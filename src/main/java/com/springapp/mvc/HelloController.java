@@ -1,8 +1,8 @@
 package com.springapp.mvc;
 
-import com.springapp.model.Person;
-import com.springapp.dao.PersonDao;
 import com.springapp.Url;
+import com.springapp.repository.PersonRepository;
+import com.springapp.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +19,7 @@ import javax.validation.Valid;
 public class HelloController {
 
     @Autowired
-    private PersonDao personDao;
+    private PersonRepository repository;
 
     @RequestMapping(Url.HOME_PAGE)
     public String rootRedirect(){
@@ -28,7 +28,7 @@ public class HelloController {
 
     @RequestMapping(Url.SHOW_PERSON)
     public void showPerson(Model model) {
-        model.addAttribute("personList", personDao.selectAll());
+        model.addAttribute("personList", repository.findAll());
     }
 
     @RequestMapping(Url.ADD_PERSON)
@@ -40,7 +40,7 @@ public class HelloController {
     public String handlePersonForm(@Valid Person person, BindingResult result) {
         String view = null; // if errors
         if (!result.hasErrors()){
-            long id = personDao.insert(person);
+            long id = repository.save(person).getId();
             String dstUrl = UriComponentsBuilder
                     .fromUriString(Url.PERSON)
                     .buildAndExpand(id)
@@ -52,7 +52,7 @@ public class HelloController {
 
     @RequestMapping(Url.PERSON)
     public String personDetail(@PathVariable("id") long id, Model model) {
-        Person person = personDao.findById(id);
+        Person person = repository.findOne(id);
         model.addAttribute("person", person);
         String view = UriComponentsBuilder
                 .fromUriString(Url.PERSON)
@@ -69,13 +69,13 @@ public class HelloController {
 
     @RequestMapping(value = Url.DELETE_PERSON, method = RequestMethod.DELETE)
     public String deletePerson(long id) {
-        personDao.delete(id);
+        repository.delete(id);
         return "redirect:" + Url.SHOW_PERSON;
     }
 
     @RequestMapping(Url.EDIT_PERSON)
     public String editPerson(@PathVariable("id") long id, Model model) {
-        Person person = personDao.findById(id);
+        Person person = repository.findOne(id);
         model.addAttribute("person", person);
         return "/person/edit";
     }
@@ -84,7 +84,7 @@ public class HelloController {
     public String handleEditForm(@PathVariable("id") long id, @Valid Person person, BindingResult result) {
         String view = "/person/edit"; // if errors
         if (!result.hasErrors()) {
-            personDao.edit(person);
+            repository.save(person);
             String dstUrl = UriComponentsBuilder
                     .fromUriString(Url.PERSON)
                     .buildAndExpand(id)
