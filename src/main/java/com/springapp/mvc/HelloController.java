@@ -36,7 +36,7 @@ public class HelloController {
         model.addAttribute("person", new Person());
     }
 
-    @RequestMapping(value = Url.ADD_PERSON, method = RequestMethod.PUT)
+    @RequestMapping(value = Url.ADD_PERSON, method = RequestMethod.POST)
     public String handlePersonForm(@Valid Person person, BindingResult result) {
         String view = null; // if errors
         if (!result.hasErrors()){
@@ -80,7 +80,7 @@ public class HelloController {
         return "/person/edit";
     }
 
-    @RequestMapping(value = Url.EDIT_PERSON, method = RequestMethod.POST)
+    @RequestMapping(value = Url.EDIT_PERSON, method = RequestMethod.PUT)
     public String handleEditForm(@PathVariable("id") long id, @Valid Person person, BindingResult result) {
         String view = "/person/edit"; // if errors
         if (!result.hasErrors()) {

@@ -11,7 +11,7 @@
 
 <h2>Add new person:</h2>
 
-<form:form method="put" modelAttribute="person">
+<form:form method="POST" modelAttribute="person">
     <table>
         <tr>
             <td><form:label path="name">ФИО: </form:label></td>
