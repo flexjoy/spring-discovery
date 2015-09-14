@@ -1,4 +1,4 @@
-package com.springapp;
+package com.springapp.dao;
 
 import com.springapp.model.Person;
 

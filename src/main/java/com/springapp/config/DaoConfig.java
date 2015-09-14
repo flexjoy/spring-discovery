@@ -1,7 +1,7 @@
 package com.springapp.config;
 
-import com.springapp.PersonDao;
-import com.springapp.PersonDaoImpl;
+import com.springapp.dao.PersonDao;
+import com.springapp.dao.PersonDaoImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
