@@ -1,28 +1,20 @@
 <html>
 <head>
     <title>Person list</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript">
         function confirm_delete(id) {
             if (!confirm("Delete person?")) return false;
-
-            var form = document.createElement("form");
-            form.setAttribute("method", "POST");
-            form.setAttribute("action", "<%=Url.DELETE_PERSON%>");
-
-            var field = document.createElement("input");
-            field.setAttribute("type", "hidden");
-            field.setAttribute("name", "_method");
-            field.setAttribute("value", "delete");
-            form.appendChild(field);
-
-            field = document.createElement("input");
-            field.setAttribute("type", "hidden");
-            field.setAttribute("name", "id");
-            field.setAttribute("value", id);
-            form.appendChild(field);
-
-            document.body.appendChild(form);
-            form.submit();
+            $.ajax({
+                method: "POST",
+                url: "<%=Url.DELETE_PERSON%>",
+                data: {
+                    id: id,
+                    _method: "DELETE"
+                }
+            }).done(function(html) {
+                $("body").html(html);
+            });
         }
     </script>
 </head>
