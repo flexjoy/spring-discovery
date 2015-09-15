@@ -10,7 +10,8 @@
                 url: "<%=Url.DELETE_PERSON%>",
                 data: {
                     id: id,
-                    _method: "DELETE"
+                    _method: "DELETE",
+                    _csrf: "${_csrf.token}"
                 }
             }).done(function(html) {
                 $("body").html(html);
