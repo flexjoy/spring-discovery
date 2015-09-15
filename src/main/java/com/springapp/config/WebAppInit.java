@@ -5,9 +5,13 @@ import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
+import javax.servlet.DispatcherType;
 import javax.servlet.Servlet;
+import javax.servlet.ServletException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
+
+import java.util.EnumSet;
 
 /**
  *  Spring application initializing class.
@@ -45,5 +49,13 @@ public class WebAppInit extends AbstractAnnotationConfigDispatcherServletInitial
     @Override
     protected Filter[] getServletFilters() {
         return new Filter[] {new HiddenHttpMethodFilter()};
+    }
+
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
+        servletContext
+                .addFilter("getMethodConvertingFilter", new GetMethodConvertingFilter())
+                .addMappingForUrlPatterns(EnumSet.of(DispatcherType.FORWARD), true, "/*");
     }
 }
