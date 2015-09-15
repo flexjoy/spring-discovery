@@ -7,7 +7,7 @@
             if (!confirm("Delete person?")) return false;
             $.ajax({
                 method: "POST",
-                url: "<%=Url.DELETE_PERSON%>",
+                url: ".." + "<%=Url.DELETE_PERSON%>",
                 data: {
                     id: id,
                     _method: "DELETE",

@@ -10,7 +10,7 @@
 <form:form method="delete" action="${deleteUrl}">
   <input type="submit" value="Delete" />
   <input type="hidden" name="id" value="${id}" />
-  <a href="<%=Url.SHOW_PERSON%>" ><button type="button">Cancel</button></a>
+  <a href="..<%=Url.SHOW_PERSON%>" ><button type="button">Cancel</button></a>
 </form:form>
 </body>
 </html>
