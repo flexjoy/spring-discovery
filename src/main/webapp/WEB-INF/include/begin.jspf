@@ -8,7 +8,15 @@
 
 <sec:authorize access="isAuthenticated()">
     <sec:authentication var="username" property="principal.username" />
-    <p>Welcome, <b><c:out value="${username}"/></b></p>
+
+    <form:form method="post" action="../logout">
+        <p>
+            Welcome,
+            <b><c:out value="${username}"/></b>
+            <input type="submit" value="Logout" />
+        </p>
+    </form:form>
+
 </sec:authorize>
 
 <sec:authorize access="!isAuthenticated()">
