@@ -81,13 +81,13 @@ public class HelloController {
     }
 
     @RequestMapping(value = Url.EDIT_PERSON, method = RequestMethod.POST)
-    public String handleEditForm(@PathVariable("id") long id, @Valid Person person, BindingResult result) {
+    public String handleEditForm(@Valid Person person, BindingResult result) {
         String view = "/person/edit"; // if errors
         if (!result.hasErrors()) {
             repository.save(person);
             String dstUrl = UriComponentsBuilder
                     .fromUriString(Url.PERSON)
-                    .buildAndExpand(id)
+                    .buildAndExpand(person.getId())
                     .toString();
             view = "redirect:" + dstUrl;
         }
