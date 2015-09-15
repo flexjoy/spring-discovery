@@ -1,5 +1,6 @@
 package com.springapp.config;
 
+import com.springapp.config.security.SecurityConfig;
 import org.h2.server.web.WebServlet;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -24,7 +25,10 @@ public class WebAppInit extends AbstractAnnotationConfigDispatcherServletInitial
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[] { RootConfig.class };
+        return new Class<?>[] {
+                RootConfig.class,
+                SecurityConfig.class
+        };
     }
 
     @Override
