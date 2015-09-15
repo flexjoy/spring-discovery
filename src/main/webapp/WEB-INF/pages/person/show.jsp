@@ -4,6 +4,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript">
         function confirm_delete(id) {
+            <sec:authorize access="!isAuthenticated()">
+                window.location("../login");
+            </sec:authorize>
             if (!confirm("Delete person?")) return false;
             $.ajax({
                 method: "POST",
