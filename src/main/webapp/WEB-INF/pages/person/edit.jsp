@@ -11,7 +11,7 @@
 
 <h2>Edit person:</h2>
 
-<form:form method="PUT" modelAttribute="person">
+<form:form method="POST" modelAttribute="person">
   <table>
     <tr>
       <td><form:label path="id">ID: </form:label></td>
