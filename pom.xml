@@ -98,6 +98,7 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <!-- Hibernate -->
