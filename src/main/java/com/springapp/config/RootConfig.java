@@ -16,7 +16,7 @@ public class RootConfig {
     @Bean(name = "messageSource")
     public MessageSource messageSource() {
         ResourceBundleMessageSource source = new ResourceBundleMessageSource();
-        source.setBasename("Messages");
+        source.setBasename("SecurityMessages");
         return source;
     }
 }

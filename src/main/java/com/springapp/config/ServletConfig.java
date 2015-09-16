@@ -1,9 +1,11 @@
 package com.springapp.config;
 
 import liquibase.integration.spring.SpringLiquibase;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -49,5 +51,12 @@ public class ServletConfig {
                 .setName("db1")
                 .build();
         return db;
+    }
+
+    @Bean(name = "messageSource")
+    public MessageSource messageSource() {
+        ResourceBundleMessageSource source = new ResourceBundleMessageSource();
+        source.setBasename("Messages");
+        return source;
     }
 }
