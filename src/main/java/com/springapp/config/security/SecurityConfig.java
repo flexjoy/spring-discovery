@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/person/edit/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/person/delete/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/confirmDelete/**").access("hasRole('ROLE_ADMIN')")
-                .and().formLogin()
+                .and().formLogin().loginPage("/login")
                 .and().logout().logoutSuccessUrl("/");
     }
 }
