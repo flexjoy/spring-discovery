@@ -10,7 +10,8 @@
 <form:form method="delete" action="${deleteUrl}">
   <input type="submit" value="Delete" />
   <input type="hidden" name="id" value="${id}" />
-  <a href="..<%=Url.SHOW_PERSON%>" ><button type="button">Cancel</button></a>
+  <spring:url value="<%=Url.SHOW_PERSON%>" var="showPersonUrl"/>
+  <a href="<c:out value="${showPersonUrl}"/>"><button type="button">Cancel</button></a>
 </form:form>
 </body>
 </html>

@@ -5,12 +5,12 @@
     <script type="text/javascript">
         function confirm_delete(id) {
             <sec:authorize access="!isAuthenticated()">
-                window.location("../login");
+                window.location("<c:url value="login" />");
             </sec:authorize>
             if (!confirm("Delete person?")) return false;
             $.ajax({
                 method: "POST",
-                url: ".." + "<%=Url.DELETE_PERSON%>",
+                url: "<c:url value="<%=Url.DELETE_PERSON%>" />",
                 data: {
                     id: id,
                     _method: "DELETE",
