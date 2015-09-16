@@ -14,4 +14,5 @@ public final class Url {
     public static final String DELETE_PERSON = "/person/delete";
     public static final String EDIT_PERSON = "/person/edit/{id}";
     public static final String CONFIRM_DELETE = "/confirmDelete/{id}";
+    public static final String LOGIN = "/login";
 }

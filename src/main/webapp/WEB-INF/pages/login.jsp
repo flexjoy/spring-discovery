@@ -18,7 +18,7 @@
 
   <h3>Login with Username and Password</h3>
 
-  <form name="f" action="login" method="POST">
+  <form name="f" action="<%=Url.LOGIN%>" method="POST">
       <table>
           <tr>
               <td>User:</td>

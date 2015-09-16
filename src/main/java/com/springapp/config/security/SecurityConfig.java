@@ -1,5 +1,6 @@
 package com.springapp.config.security;
 
+import com.springapp.Url;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -28,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/person/edit/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/person/delete/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/confirmDelete/**").access("hasRole('ROLE_ADMIN')")
-                .and().formLogin().loginPage("/login")
+                .and().formLogin().loginPage(Url.LOGIN)
                 .and().logout().logoutSuccessUrl("/");
     }
 }
