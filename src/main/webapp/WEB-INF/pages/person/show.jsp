@@ -23,6 +23,7 @@
     </script>
 </head>
 <body>
+<jsp:include page="include/userInfo.jspf" />
 <h2>Person list:</h2>
 <table border="1" cellpadding="5" cellspacing="0">
     <tr>

@@ -3,6 +3,7 @@
   <title>Confirm delete</title>
 </head>
 <body>
+<jsp:include page="include/userInfo.jspf" />
 <h2>Delete person?</h2>
 <spring:url value="<%=Url.DELETE_PERSON%>" var="deleteUrl">
     <spring:param name="id" value="${id}" />

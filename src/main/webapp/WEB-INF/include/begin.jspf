@@ -5,20 +5,3 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="com.springapp.Url" %>
 <spring:htmlEscape defaultHtmlEscape="true" />
-
-<sec:authorize access="isAuthenticated()">
-    <sec:authentication var="username" property="principal.username" />
-
-    <form:form method="post" action="../logout">
-        <p>
-            Welcome,
-            <b><c:out value="${username}"/></b>
-            <input type="submit" value="Logout" />
-        </p>
-    </form:form>
-
-</sec:authorize>
-
-<sec:authorize access="!isAuthenticated()">
-    <p><i>User not logged in</i></p>
-</sec:authorize>

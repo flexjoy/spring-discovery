@@ -8,7 +8,7 @@
   </style>
 </head>
 <body>
-
+<jsp:include page="include/userInfo.jspf" />
 <h2>Edit person:</h2>
 
 <form:form method="POST" modelAttribute="person">
