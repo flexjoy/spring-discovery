@@ -21,8 +21,11 @@
 </table>
 <br>
 <spring:url value="<%=Url.SHOW_PERSON%>" var="showPersonUrl"/>
-<spring:url value="<%=Url.ADD_PERSON%>" var="addPersonUrl"/>
-<a href="<c:out value="${showPersonUrl}" />">&lt; Back to person list</a> |
-<a href="<c:out value="${addPersonUrl}" />">Add new person</a>
+<a href="<c:out value="${showPersonUrl}" />">&lt; Back to person list</a>
+<sec:authorize access="hasRole('ADMIN')">
+    &nbsp;|&nbsp;
+    <spring:url value="<%=Url.ADD_PERSON%>" var="addPersonUrl"/>
+    <a href="<c:out value="${addPersonUrl}" />">Add new person</a>
+</sec:authorize>
 </body>
 </html>
