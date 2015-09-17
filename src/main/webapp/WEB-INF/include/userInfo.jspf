@@ -1,11 +1,10 @@
-<%@ page import="com.springapp.Url" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<sec:authorize access="hasRole('ADMIN')">
+<sec:authorize access="isAuthenticated()">
   <sec:authentication var="username" property="principal.username" />
+
   <form:form method="post" action="../logout">
     <p>
       Welcome,
@@ -13,12 +12,9 @@
       <input type="submit" value="Logout" />
     </p>
   </form:form>
+
 </sec:authorize>
 
-<sec:authorize access="!hasRole('ADMIN')">
-    <p>
-        <i>User not logged in</i>
-        <spring:url value="<%=Url.LOGIN%>" var="loginUrl"/>
-        <a href="<c:out value="${loginUrl}"/>"><button type="button">Login</button></a>
-    </p>
+<sec:authorize access="!isAuthenticated()">
+  <p><i>User not logged in</i></p>
 </sec:authorize>
