@@ -3,7 +3,8 @@
     <title><spring:message code="person.title"/></title>
 </head>
 <body>
-<jsp:include page="include/userInfo.jspf" />
+<spring:url value="include/userInfo.jspf" var="includeUrl"/>
+<jsp:include page="${includeUrl}" />
 <h2><spring:message code="person.title"/>:</h2>
 <table border="1" cellpadding="5" cellspacing="0">
     <tr>
