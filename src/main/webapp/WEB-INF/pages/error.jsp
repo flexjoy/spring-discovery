@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Error</title>
+    <title><spring:message code="error.title" /></title>
     <style>
         .error {
             color: #ff0000;
@@ -16,7 +16,7 @@
     </style>
 </head>
 <body>
-<h2 class="error">Error!</h2>
+<h2 class="error"><spring:message code="error.title"/></h2>
 <div>
     <p><b>${name}: </b>${exception.message}</p>
 </div>
@@ -25,7 +25,7 @@
 <br>
 <br>
 <div class="errorblock">
-    <b>Detailed information:</b>
+    <b><spring:message code="error.detailed"/></b>
         <br>
     <c:forEach items="${exception.stackTrace}" var="ste">
         ${ste}

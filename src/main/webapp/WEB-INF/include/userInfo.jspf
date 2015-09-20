@@ -21,9 +21,9 @@
   <c:url value="/logout" var="logoutUrl"/>
   <form:form method="post" action="${logoutUrl}">
     <p>
-      Welcome,
+      <spring:message code="user.welcome"/>
       <b><c:out value="${username}"/></b>
-      <input type="submit" value="Logout" />
+      <input type="submit" value="<spring:message code="user.logout"/>" />
     </p>
   </form:form>
 
@@ -31,8 +31,8 @@
 
 <sec:authorize access="!isAuthenticated()">
     <p>
-        <i>User not logged in</i>
+        <i><spring:message code="user.notLogin"/></i>
         <spring:url value="<%=Url.LOGIN%>" var="loginUrl"/>
-        <a href="<c:out value="${loginUrl}"/>"><button type="button">Login</button></a>
+        <a href="<c:out value="${loginUrl}"/>"><button type="button"><spring:message code="user.login"/></button></a>
     </p>
 </sec:authorize>

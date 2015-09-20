@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Login</title>
+    <title><spring:message code="user.login"/></title>
     <style>
         .error {
             color: #ff0000;
@@ -11,21 +11,21 @@
 
   <c:if test="${param.error != null}">
       <p class="error">
-          Попытка входа не удалась, попробуйте еще раз.<br>Ошибка:
+          <spring:message code="user.error"/><br />
           <c:out value="${sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}" />
       </p>
   </c:if>
 
-  <h3>Login with Username and Password</h3>
+  <h3><spring:message code="user.loginHeader"/></h3>
 
   <form name="f" action="<%=Url.LOGIN%>" method="POST">
       <table>
           <tr>
-              <td>User:</td>
+              <td><spring:message code="user.user"/></td>
               <td><input name="username" value="" type="text"></td>
           </tr>
           <tr>
-              <td>Password:</td>
+              <td><spring:message code="user.password"/></td>
               <td><input name="password" type="password"></td>
           </tr>
           <tr>
@@ -38,7 +38,7 @@
   </form>
 
   <spring:url value="<%=Url.SHOW_PERSON%>" var="showPersonUrl"/>
-  <a href="<c:out value="${showPersonUrl}" />">&lt; Back to person list</a>
+  <a href="<c:out value="${showPersonUrl}" />"><spring:message code="link.backToPersonList"/></a>
 
 </body>
 </html>
