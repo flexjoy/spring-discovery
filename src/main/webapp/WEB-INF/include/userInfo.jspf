@@ -4,6 +4,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
+<spring:url value="" var="enLocaleUrl" >
+    <spring:param name="locale" value="en"/>
+</spring:url>
+<spring:url value="" var="ruLocaleUrl" >
+    <spring:param name="locale" value="ru"/>
+</spring:url>
+<p>
+    <a href="${enLocaleUrl}">EN</a>
+    &nbsp;|&nbsp;
+    <a href="${ruLocaleUrl}">RU</a>
+</p>
 <sec:authorize access="isAuthenticated()">
   <sec:authentication var="username" property="principal.username" />
 
