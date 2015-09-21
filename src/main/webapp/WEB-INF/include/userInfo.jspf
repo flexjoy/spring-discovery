@@ -11,9 +11,7 @@
     <spring:param name="locale" value="ru"/>
 </spring:url>
 <p>
-    <a href="${enLocaleUrl}">EN</a>
-    &nbsp;|&nbsp;
-    <a href="${ruLocaleUrl}">RU</a>
+    <a href="${enLocaleUrl}">EN</a>&nbsp;|&nbsp;<a href="${ruLocaleUrl}">RU</a>
 </p>
 <sec:authorize access="isAuthenticated()">
   <sec:authentication var="username" property="principal.username" />
