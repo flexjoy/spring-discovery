@@ -5,7 +5,7 @@
     <sec:authorize access="hasRole('ADMIN')">
     <script type="text/javascript">
         function confirm_delete(id) {
-            if (!confirm(<spring:message code="delete.request"/>)) return false;
+            if (!confirm("<spring:message code="delete.request"/>")) return false;
             $.ajax({
                 method: "POST",
                 url: "<c:url value="<%=Url.DELETE_PERSON%>" />",
