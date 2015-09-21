@@ -3,7 +3,7 @@
   <title><spring:message code="delete.title"/></title>
 </head>
 <body>
-<jsp:include page="include/userInfo.jspf" />
+<%@ include file="/WEB-INF/include/userInfo.jspf" %>
 <h2><spring:message code="delete.request"/></h2>
 <spring:url value="<%=Url.DELETE_PERSON%>" var="deleteUrl">
     <spring:param name="id" value="${id}" />

@@ -8,7 +8,7 @@
     </style>
 </head>
 <body>
-<jsp:include page="include/userInfo.jspf" />
+<%@ include file="/WEB-INF/include/userInfo.jspf" %>
 <h2><spring:message code="add.title"/>:</h2>
 
 <form:form method="POST" modelAttribute="person">
