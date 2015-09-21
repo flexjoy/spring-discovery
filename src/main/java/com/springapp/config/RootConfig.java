@@ -33,7 +33,7 @@ public class RootConfig extends WebMvcConfigurerAdapter {
         CookieLocaleResolver resolver = new CookieLocaleResolver();
         resolver.setDefaultLocale(new Locale("en"));
         resolver.setCookieName("myLocaleCookie");
-        resolver.setCookieMaxAge(3600);
+        resolver.setCookieMaxAge(3600*24*365); // cookie lifetime one year
         return resolver;
     }
 
