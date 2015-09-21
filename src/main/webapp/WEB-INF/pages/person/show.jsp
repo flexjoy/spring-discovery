@@ -22,8 +22,7 @@
     </sec:authorize>
 </head>
 <body>
-<spring:url value="include/userInfo.jspf" var="includeUrl"/>
-<jsp:include page="${includeUrl}" />
+<jsp:include page="include/userInfo.jspf" />
 <h2><spring:message code="show.title"/>:</h2>
 <table border="1" cellpadding="5" cellspacing="0">
     <tr>
