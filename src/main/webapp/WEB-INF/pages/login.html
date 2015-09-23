@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      th:include="templates/template :: page">
+<head>
+    <title></title>
+</head>
+<body>
+    <div th:fragment="content">
+        <div class="error" th:if="${param.error != null}" th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
+            <span th:text="#{user.error}">error-header</span>
+            <br />
+            <span th:text="${errorMsg}">error</span>
+        </div>
+        <h3 th:text="#{user.loginHeader}">loginHeader</h3>
+        <form method="post">
+            <table>
+                <tr>
+                    <td th:text="#{user.user}">user</td>
+                    <td><input name="username" value="" type="text" /></td>
+                </tr>
+                <tr>
+                    <td th:text="#{user.password}">password</td>
+                    <td><input name="password" type="password" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="right">
+                        <input type="submit" th:value="#{user.login}" value="login"/>
+                    </td>
+                </tr>
+            </table>
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+        </form>
+        <a th:href="@{/person/show}" th:text="#{link.backToPersonList}">back</a>
+    </div>
+</body>
+</html>
