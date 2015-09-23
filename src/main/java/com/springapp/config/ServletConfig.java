@@ -9,7 +9,11 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
+import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
+import org.thymeleaf.templateresolver.TemplateResolver;
 
 import javax.sql.DataSource;
 
@@ -24,14 +28,6 @@ import javax.sql.DataSource;
 @EnableWebMvc
 @ComponentScan("com.springapp")
 public class ServletConfig {
-
-    @Bean(name = "viewResolver")
-    public ViewResolver viewResolver() {
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/pages/");
-        resolver.setSuffix(".jsp");
-        return resolver;
-    }
 
     @Bean(name = "springLiquibase")
     public SpringLiquibase springLiquibase() {
@@ -49,5 +45,31 @@ public class ServletConfig {
                 .setName("db1")
                 .build();
         return db;
+    }
+
+    @Bean
+    public TemplateResolver templateResolver() {
+        ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
+        resolver.setPrefix("/WEB-INF/pages/");
+        resolver.setSuffix(".html");
+        resolver.setTemplateMode("HTML5");
+        resolver.setCacheable(false);
+        return resolver;
+    }
+
+    @Bean
+    public SpringTemplateEngine templateEngine() {
+        SpringTemplateEngine engine = new SpringTemplateEngine();
+        engine.addTemplateResolver(templateResolver());
+        engine.addDialect(new SpringSecurityDialect());
+        return engine;
+    }
+
+    @Bean
+    public ViewResolver thViewResolver() {
+        ThymeleafViewResolver resolver = new ThymeleafViewResolver();
+        resolver.setTemplateEngine(templateEngine());
+        resolver.setCharacterEncoding("UTF-8");
+        return resolver;
     }
 }
