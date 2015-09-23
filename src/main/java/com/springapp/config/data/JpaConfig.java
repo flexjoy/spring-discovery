@@ -1,4 +1,4 @@
-package com.springapp.config;
+package com.springapp.config.data;
 
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
