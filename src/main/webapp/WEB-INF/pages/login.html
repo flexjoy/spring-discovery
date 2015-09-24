@@ -12,50 +12,56 @@
 
     <div id="header">
         <div>
-            <a th:href="@{?locale=en}">EN</a>&nbsp;|&nbsp;<a th:href="@{?locale=ru}">RU</a>
+            <a th:href="@{?locale=en}" href="?locale=en">EN</a>
+            |
+            <a th:href="@{?locale=ru}" href="?locale=ru">RU</a>
         </div>
 
         <div sec:authorize="isAuthenticated()">
-            <form method="post" th:action="@{ ${@Url.LOGOUT} }">
-                <span th:text="#{user.welcome}">welcome</span>
+            <form method="post" th:action="@{ ${@Url.LOGOUT} }" action="person/show.html">
+                <span th:text="#{user.welcome}">Welcome, </span>
                 <span class="bold" sec:authentication="principal.username">username</span>
-                <input type="submit" value="logout" th:value="#{user.logout}"/>
+                <input type="submit" value="Logout" th:value="#{user.logout}"/>
             </form>
         </div>
 
         <div sec:authorize="!isAuthenticated()">
             <span class="italic" th:text="#{user.notLogged}">User not logged in</span>
-            <a th:href="@{ ${@Url.LOGIN} }">
+            <a th:href="@{ ${@Url.LOGIN} }" href="login.html">
                 <button type="button" th:text="#{user.login}">Login</button>
             </a>
         </div>
     </div>
 
     <div id="content">
-        <div class="error" th:if="${param.error != null}" th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
-            <span th:text="#{user.error}">error-header</span>
+        <div class="error"
+             th:if="${param.error != null}"
+             th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
+            <span th:text="#{user.error}">Error header</span>
             <br />
-            <span th:text="${errorMsg}">error</span>
+            <span th:text="${errorMsg}">error message</span>
         </div>
-        <h3 th:text="#{user.loginHeader}">loginHeader</h3>
-        <form method="post" th:action="@{ ${@Url.LOGIN} }">
+        <h3 th:text="#{user.loginHeader}">Login with Username and Password</h3>
+        <form method="post" th:action="@{ ${@Url.LOGIN} }" action="person/show.html">
             <table>
                 <tr>
-                    <td th:text="#{user.user}">user</td>
+                    <td th:text="#{user.user}">User:</td>
                     <td><input name="username" value="" type="text" /></td>
                 </tr>
                 <tr>
-                    <td th:text="#{user.password}">password</td>
+                    <td th:text="#{user.password}">Password:</td>
                     <td><input name="password" type="password" /></td>
                 </tr>
                 <tr>
                     <td colspan="2" align="right">
-                        <input type="submit" th:value="#{user.login}" value="login"/>
+                        <input type="submit" th:value="#{user.login}" value="Login"/>
                     </td>
                 </tr>
             </table>
         </form>
-        <a th:href="@{ ${@Url.SHOW_PERSON} }" th:text="#{link.backToPersonList}">back</a>
+        <a href="person/show.html"
+           th:href="@{ ${@Url.SHOW_PERSON} }"
+           th:text="#{link.backToPersonList}">&laquo; Back to person list</a>
     </div>
 </body>
 </html>

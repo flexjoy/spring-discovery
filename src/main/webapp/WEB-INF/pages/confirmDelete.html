@@ -12,32 +12,34 @@
 
     <div id="header">
         <div>
-            <a th:href="@{?locale=en}">EN</a>&nbsp;|&nbsp;<a th:href="@{?locale=ru}">RU</a>
+            <a th:href="@{?locale=en}" href="?locale=en">EN</a>
+            |
+            <a th:href="@{?locale=ru}" href="?locale=ru">RU</a>
         </div>
 
         <div sec:authorize="isAuthenticated()">
-            <form method="post" th:action="@{ ${@Url.LOGOUT} }">
-                <span th:text="#{user.welcome}">welcome</span>
+            <form method="post" th:action="@{ ${@Url.LOGOUT} }" action="person/show.html">
+                <span th:text="#{user.welcome}">Welcome, </span>
                 <span class="bold" sec:authentication="principal.username">username</span>
-                <input type="submit" value="logout" th:value="#{user.logout}"/>
+                <input type="submit" value="Logout" th:value="#{user.logout}"/>
             </form>
         </div>
 
         <div sec:authorize="!isAuthenticated()">
             <span class="italic" th:text="#{user.notLogged}">User not logged in</span>
-            <a th:href="@{ ${@Url.LOGIN} }">
+            <a th:href="@{ ${@Url.LOGIN} }" href="login.html">
                 <button type="button" th:text="#{user.login}">Login</button>
             </a>
         </div>
     </div>
 
     <div id="content">
-        <h2 th:text="#{delete.request}">delete-request</h2>
-        <form method="post" th:action="@{ ${@Url.DELETE_PERSON} }">
+        <h2 th:text="#{delete.request}">Delete person?</h2>
+        <form method="post" th:action="@{ ${@Url.DELETE_PERSON} }" action="person/show.html">
             <input type="hidden" name="id" th:value="${id}" />
             <input type="hidden" name="_method" value="delete" />
-            <input type="submit" th:value="#{label.delete}" />
-            <a th:href="@{ ${@Url.SHOW_PERSON} }">
+            <input type="submit" value="Delete" th:value="#{label.delete}" />
+            <a href="person/show.html" th:href="@{ ${@Url.SHOW_PERSON} }">
                 <button type="button" th:text="#{label.cancel}">Cancel</button>
             </a>
         </form>

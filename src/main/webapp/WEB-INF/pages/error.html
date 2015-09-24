@@ -12,38 +12,42 @@
 
     <div id="header">
         <div>
-            <a th:href="@{?locale=en}">EN</a>&nbsp;|&nbsp;<a th:href="@{?locale=ru}">RU</a>
+            <a th:href="@{?locale=en}" href="?locale=en">EN</a>
+            |
+            <a th:href="@{?locale=ru}" href="?locale=ru">RU</a>
         </div>
 
         <div sec:authorize="isAuthenticated()">
-            <form method="post" th:action="@{ ${@Url.LOGOUT} }">
-                <span th:text="#{user.welcome}">welcome</span>
+            <form method="post" th:action="@{ ${@Url.LOGOUT} }" action="person/show.html">
+                <span th:text="#{user.welcome}">Welcome, </span>
                 <span class="bold" sec:authentication="principal.username">username</span>
-                <input type="submit" value="logout" th:value="#{user.logout}"/>
+                <input type="submit" value="Logout" th:value="#{user.logout}"/>
             </form>
         </div>
 
         <div sec:authorize="!isAuthenticated()">
             <span class="italic" th:text="#{user.notLogged}">User not logged in</span>
-            <a th:href="@{ ${@Url.LOGIN} }">
+            <a th:href="@{ ${@Url.LOGIN} }" href="login.html">
                 <button type="button" th:text="#{user.login}">Login</button>
             </a>
         </div>
     </div>
 
     <div id="content">
-        <h2 class="error" th:text="#{error.title}">error</h2>
+        <h2 class="error" th:text="#{error.title}">Error</h2>
         <div>
-            <span class="bold" th:text="${name}">name</span>
+            <span class="bold" th:text="${name}">Error name</span>
             <span> : </span>
-            <span th:text="${exception.message}">message</span>
+            <span th:text="${exception.message}">error message</span>
         </div>
         <br/>
-        <a th:href="@{ ${@Url.SHOW_PERSON} }" th:text="#{link.backToPersonList}">back</a>
+        <a href="person/show.html"
+           th:href="@{ ${@Url.SHOW_PERSON} }"
+           th:text="#{link.backToPersonList}">&laquo; Back to person list</a>
         <br/>
         <br/>
         <div class="errorblock">
-            <span class="bold" th:text="#{error.detailed}">detailed</span>
+            <span class="bold" th:text="#{error.detailed}">Detailed information:</span>
             <br/>
             <br/>
             <span th:each="ste : ${exception.stackTrace}">

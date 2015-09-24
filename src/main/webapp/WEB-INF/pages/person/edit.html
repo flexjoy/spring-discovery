@@ -12,52 +12,58 @@
 
     <div id="header">
         <div>
-            <a th:href="@{?locale=en}">EN</a>&nbsp;|&nbsp;<a th:href="@{?locale=ru}">RU</a>
+            <a th:href="@{?locale=en}" href="?locale=en">EN</a>
+            |
+            <a th:href="@{?locale=ru}" href="?locale=ru">RU</a>
         </div>
 
         <div sec:authorize="isAuthenticated()">
-            <form method="post" th:action="@{ ${@Url.LOGOUT} }">
-                <span th:text="#{user.welcome}">welcome</span>
+            <form method="post" th:action="@{ ${@Url.LOGOUT} }" action="show.html">
+                <span th:text="#{user.welcome}">Welcome, </span>
                 <span class="bold" sec:authentication="principal.username">username</span>
-                <input type="submit" value="logout" th:value="#{user.logout}"/>
+                <input type="submit" value="Logout" th:value="#{user.logout}"/>
             </form>
         </div>
 
         <div sec:authorize="!isAuthenticated()">
             <span class="italic" th:text="#{user.notLogged}">User not logged in</span>
-            <a th:href="@{ ${@Url.LOGIN} }">
+            <a th:href="@{ ${@Url.LOGIN} }" href="../login.html">
                 <button type="button" th:text="#{user.login}">Login</button>
             </a>
         </div>
     </div>
 
     <div id="content">
-        <h2 th:text="#{edit.title}">title</h2>
-        <form method="post" th:action="@{ ${@Url.EDIT_PERSON} (id = *{id}) }" th:object="${person}">
+        <h2 th:text="#{edit.title}">Edit person</h2>
+        <form method="post" action="person.html"
+              th:action="@{ ${@Url.EDIT_PERSON} (id = *{id}) }"
+              th:object="${person}">
             <table>
                 <tr>
-                    <td th:text="#{person.ID}">id</td>
-                    <td><input disabled="true" type="text" name="id" th:value="*{id}"/></td>
+                    <td th:text="#{person.ID}">ID</td>
+                    <td><input disabled="true" type="text" name="id" th:value="*{id}" value="1"/></td>
                 </tr>
                 <tr>
-                    <td th:text="#{person.Name}">name</td>
-                    <td><input type="text" name="name" th:value="*{name}"/></td>
+                    <td th:text="#{person.Name}">Name</td>
+                    <td><input type="text" name="name" th:value="*{name}" value="John Smith"/></td>
                     <td><span th:errors="*{name}" class="error" /></td>
                 </tr>
                 <tr>
-                    <td th:text="#{person.Age}">age</td>
-                    <td><input type="text" name="age" th:value="*{age}"/></td>
+                    <td th:text="#{person.Age}">Age</td>
+                    <td><input type="text" name="age" th:value="*{age}" value="55"/></td>
                     <td><span th:errors="*{age}" class="error" /></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td align="right"><input type="submit" th:value="#{label.edit}"/></td>
+                    <td align="right"><input type="submit" th:value="#{label.edit}" value="Edit"/></td>
                     <td></td>
                 </tr>
             </table>
         </form>
         <br />
-        <a th:href="@{ ${@Url.SHOW_PERSON} }" th:text="#{link.backToPersonList}">back</a>
+        <a href="show.html"
+           th:href="@{ ${@Url.SHOW_PERSON} }"
+           th:text="#{link.backToPersonList}">&laquo; Back to person list</a>
     </div>
 </body>
 </html>
