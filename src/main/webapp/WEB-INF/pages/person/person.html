@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    <div id="content">
+    <div id="content" th:with="isAdmin=${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
         <h2 th:text="#{person.title}">title</h2>
         <table border="1" cellpadding="5" cellspacing="0" th:object="${person}">
             <tr>
@@ -49,7 +49,7 @@
         <br />
         <a th:href="@{/person/show}" th:text="#{link.backToPersonList}">back</a>
         &nbsp;|&nbsp;
-        <a th:href="@{/person/add}" th:text="#{link.addNewPerson}" sec:authorize="hasRole('ADMIN')">add</a>
+        <a th:href="@{/person/add}" th:text="#{link.addNewPerson}" th:if="${isAdmin}">add</a>
     </div>
 </body>
 </html>

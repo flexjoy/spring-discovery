@@ -30,14 +30,14 @@
         </div>
     </div>
 
-    <div id="content">
+    <div id="content" th:with="isAdmin=${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
         <h2 th:text="#{show.title}">title</h2>
         <table border="1" cellpadding="5" cellspacing="0">
             <tr>
                 <th th:text="#{show.tableHeaderId}">id</th>
                 <th th:text="#{person.Name}">name</th>
                 <th th:text="#{person.Age}">age</th>
-                <th th:text="#{show.tableHeaderAction}" sec:authorize="hasRole('ADMIN')">action</th>
+                <th th:text="#{show.tableHeaderAction}" th:if="${isAdmin}">action</th>
             </tr>
             <tr th:each="person : ${personList}">
                 <td th:text="${personStat.count}">index</td>
@@ -45,20 +45,20 @@
                     <a th:href="@{${person.id}}" th:text="${person.name}">name</a>
                 </td>
                 <td th:text="${person.age}">age</td>
-                <td sec:authorize="hasRole('ADMIN')">
+                <td th:if="${isAdmin}">
                     <a th:href="@{|/confirmDelete/${person.id}|}" th:onclick="|confirm_delete(${person.id}); return false;|" th:text="#{label.delete}">delete</a>
                     &nbsp;
                     <a th:href="@{|/person/edit/${person.id}|}" th:text="#{label.edit}">edit</a>
                 </td>
             </tr>
-            <tr th:with="showCommandColumn=${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                <td th:colspan="${showCommandColumn ? '4' : '3' }" th:text="|#{show.totalPersons} ${personList.size()}|">Total persons:</td>
+            <tr>
+                <td th:colspan="${isAdmin ? '4' : '3' }" th:text="|#{show.totalPersons} ${personList.size()}|">Total persons:</td>
             </tr>
         </table>
         <br/>
-        <a th:href="@{/person/add}" th:text="#{link.addNewPerson}" sec:authorize="hasRole('ADMIN')">add</a>
+        <a th:href="@{/person/add}" th:text="#{link.addNewPerson}" th:if="${isAdmin}">add</a>
 
-        <script th:inline="javascript" sec:authorize="hasRole('ADMIN')">
+        <script th:inline="javascript" th:if="${isAdmin}">
             function confirm_delete(id) {
                 var request = [[#{delete.request}]];
                 var csrf = [[${_csrf.token}]];
