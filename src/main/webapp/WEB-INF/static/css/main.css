@@ -10,3 +10,11 @@
     margin: 5px;
     font-size: 0.8em;
 }
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}

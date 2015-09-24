@@ -18,14 +18,14 @@
         <div sec:authorize="isAuthenticated()">
             <form method="post" th:action="@{/logout}">
                 <span th:text="#{user.welcome}">welcome</span>
-                <b sec:authentication="principal.username">username</b>
+                <span class="bold" sec:authentication="principal.username">username</span>
                 <input type="submit" value="logout" th:value="#{user.logout}"/>
                 <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
             </form>
         </div>
 
         <div sec:authorize="!isAuthenticated()">
-            <i th:text="#{user.notLogged}">User not logged in</i>
+            <span class="italic" th:text="#{user.notLogged}">User not logged in</span>
             <a th:href="@{/login}"><button type="button" th:text="#{user.login}">Login</button></a>
         </div>
     </div>
@@ -33,7 +33,7 @@
     <div id="content">
         <h2 class="error" th:text="#{error.title}">error</h2>
         <div>
-            <b th:text="${name}">name</b>
+            <span class="bold" th:text="${name}">name</span>
             <span> : </span>
             <span th:text="${exception.message}">message</span>
         </div>
@@ -42,7 +42,7 @@
         <br/>
         <br/>
         <div class="errorblock">
-            <b th:text="#{error.detailed}">detailed</b>
+            <span class="bold" th:text="#{error.detailed}">detailed</span>
             <br/>
             <br/>
             <span th:each="ste : ${exception.stackTrace}">

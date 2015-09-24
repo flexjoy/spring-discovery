@@ -18,14 +18,14 @@
         <div sec:authorize="isAuthenticated()">
             <form method="post" th:action="@{/logout}">
                 <span th:text="#{user.welcome}">welcome</span>
-                <b sec:authentication="principal.username">username</b>
+                <span class="bold" sec:authentication="principal.username">username</span>
                 <input type="submit" value="logout" th:value="#{user.logout}"/>
                 <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
             </form>
         </div>
 
         <div sec:authorize="!isAuthenticated()">
-            <i th:text="#{user.notLogged}">User not logged in</i>
+            <span class="italic" th:text="#{user.notLogged}">User not logged in</span>
             <a th:href="@{/login}"><button type="button" th:text="#{user.login}">Login</button></a>
         </div>
     </div>
