@@ -29,9 +29,9 @@
         </div>
     </div>
 
-    <div id="content" th:with="isAdmin=${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+    <div id="content" th:with="isAdmin=${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:object="${person}">
         <h2 th:text="#{person.title}">title</h2>
-        <table border="1" cellpadding="5" cellspacing="0" th:object="${person}">
+        <table border="1" cellpadding="5" cellspacing="0">
             <tr>
                 <th th:text="#{person.ID}">id</th>
                 <td th:text="*{id}">id</td>
@@ -47,8 +47,34 @@
         </table>
         <br />
         <a th:href="@{/person/show}" th:text="#{link.backToPersonList}">back</a>
-        &nbsp;|&nbsp;
-        <a th:href="@{/person/add}" th:text="#{link.addNewPerson}" th:if="${isAdmin}">add</a>
+        <span th:if="${isAdmin}">
+             |
+            <a th:href="@{|/confirmDelete/*{id}|}" th:onclick="|confirm_delete(*{id}); return false;|" th:text="#{label.delete}">delete</a>
+             |
+            <a th:href="@{|/person/edit/*{id}|}" th:text="#{label.edit}">edit</a>
+             |
+            <a th:href="@{/person/add}" th:text="#{link.addNewPerson}">add</a>
+        </span>
+
+        <script th:inline="javascript" th:if="${isAdmin}">
+            function confirm_delete(id) {
+                var request = [[#{delete.request}]];
+                var csrf = [[${_csrf.token}]];
+                var url = [[@{/person/delete}]];
+                if (!confirm(request)) return false;
+                $.ajax({
+                    method: "POST",
+                    url: url,
+                    data: {
+                        id: id,
+                        _method: "DELETE",
+                        _csrf: csrf
+                    }
+                }).done(function(html) {
+                    $("body").html(html);
+                });
+            }
+        </script>
     </div>
 </body>
 </html>
