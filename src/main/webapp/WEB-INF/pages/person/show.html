@@ -48,9 +48,8 @@
                     <a th:href="@{|/person/edit/${person.id}|}" th:text="#{label.edit}">edit</a>
                 </td>
             </tr>
-            <tr>
-                <td th:colspan="4" th:text="|#{show.totalPersons} ${personList.size()}|" sec:authorize="hasRole('ADMIN')">size</td>
-                <td th:colspan="3" th:text="|#{show.totalPersons} ${personList.size()}|" sec:authorize="!hasRole('ADMIN')">size</td>
+            <tr th:with="showCommandColumn=${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                <td th:colspan="${showCommandColumn ? '4' : '3' }" th:text="|#{show.totalPersons} ${personList.size()}|">Total persons:</td>
             </tr>
         </table>
         <br/>
