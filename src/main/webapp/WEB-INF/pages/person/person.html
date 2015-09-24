@@ -16,7 +16,7 @@
         </div>
 
         <div sec:authorize="isAuthenticated()">
-            <form method="post" th:action="@{/logout}">
+            <form method="post" th:action="@{ ${@Url.LOGOUT} }">
                 <span th:text="#{user.welcome}">welcome</span>
                 <span class="bold" sec:authentication="principal.username">username</span>
                 <input type="submit" value="logout" th:value="#{user.logout}"/>
@@ -25,7 +25,9 @@
 
         <div sec:authorize="!isAuthenticated()">
             <span class="italic" th:text="#{user.notLogged}">User not logged in</span>
-            <a th:href="@{/login}"><button type="button" th:text="#{user.login}">Login</button></a>
+            <a th:href="@{ ${@Url.LOGIN} }">
+                <button type="button" th:text="#{user.login}">Login</button>
+            </a>
         </div>
     </div>
 
@@ -46,21 +48,21 @@
             </tr>
         </table>
         <br />
-        <a th:href="@{/person/show}" th:text="#{link.backToPersonList}">back</a>
+        <a th:href="@{ ${@Url.SHOW_PERSON} }" th:text="#{link.backToPersonList}">back</a>
         <span th:if="${isAdmin}">
              |
-            <a th:href="@{|/confirmDelete/*{id}|}" th:onclick="|confirm_delete(*{id}); return false;|" th:text="#{label.delete}">delete</a>
+            <a th:href="@{ ${@Url.CONFIRM_DELETE} (id = *{id}) }" th:onclick="|confirm_delete(*{id}); return false;|" th:text="#{label.delete}">delete</a>
              |
-            <a th:href="@{|/person/edit/*{id}|}" th:text="#{label.edit}">edit</a>
+            <a th:href="@{ ${@Url.EDIT_PERSON} (id = *{id}) }" th:text="#{label.edit}">edit</a>
              |
-            <a th:href="@{/person/add}" th:text="#{link.addNewPerson}">add</a>
+            <a th:href="@{ ${@Url.ADD_PERSON} }" th:text="#{link.addNewPerson}">add</a>
         </span>
 
         <script th:inline="javascript" th:if="${isAdmin}">
             function confirm_delete(id) {
                 var request = [[#{delete.request}]];
                 var csrf = [[${_csrf.token}]];
-                var url = [[@{/person/delete}]];
+                var url = [[@{ ${@Url.DELETE_PERSON} }]];
                 if (!confirm(request)) return false;
                 $.ajax({
                     method: "POST",

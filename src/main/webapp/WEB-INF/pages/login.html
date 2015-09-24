@@ -16,7 +16,7 @@
         </div>
 
         <div sec:authorize="isAuthenticated()">
-            <form method="post" th:action="@{/logout}">
+            <form method="post" th:action="@{ ${@Url.LOGOUT} }">
                 <span th:text="#{user.welcome}">welcome</span>
                 <span class="bold" sec:authentication="principal.username">username</span>
                 <input type="submit" value="logout" th:value="#{user.logout}"/>
@@ -25,7 +25,9 @@
 
         <div sec:authorize="!isAuthenticated()">
             <span class="italic" th:text="#{user.notLogged}">User not logged in</span>
-            <a th:href="@{/login}"><button type="button" th:text="#{user.login}">Login</button></a>
+            <a th:href="@{ ${@Url.LOGIN} }">
+                <button type="button" th:text="#{user.login}">Login</button>
+            </a>
         </div>
     </div>
 
@@ -36,7 +38,7 @@
             <span th:text="${errorMsg}">error</span>
         </div>
         <h3 th:text="#{user.loginHeader}">loginHeader</h3>
-        <form method="post" th:action="@{/login}">
+        <form method="post" th:action="@{ ${@Url.LOGIN} }">
             <table>
                 <tr>
                     <td th:text="#{user.user}">user</td>
@@ -53,7 +55,7 @@
                 </tr>
             </table>
         </form>
-        <a th:href="@{/person/show}" th:text="#{link.backToPersonList}">back</a>
+        <a th:href="@{ ${@Url.SHOW_PERSON} }" th:text="#{link.backToPersonList}">back</a>
     </div>
 </body>
 </html>

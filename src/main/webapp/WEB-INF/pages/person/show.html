@@ -16,7 +16,7 @@
         </div>
 
         <div sec:authorize="isAuthenticated()">
-            <form method="post" th:action="@{/logout}">
+            <form method="post" th:action="@{ ${@Url.LOGOUT} }">
                 <span th:text="#{user.welcome}">welcome</span>
                 <span class="bold" sec:authentication="principal.username">username</span>
                 <input type="submit" value="logout" th:value="#{user.logout}"/>
@@ -25,7 +25,9 @@
 
         <div sec:authorize="!isAuthenticated()">
             <span class="italic" th:text="#{user.notLogged}">User not logged in</span>
-            <a th:href="@{/login}"><button type="button" th:text="#{user.login}">Login</button></a>
+            <a th:href="@{ ${@Url.LOGIN} }">
+                <button type="button" th:text="#{user.login}">Login</button>
+            </a>
         </div>
     </div>
 
@@ -38,16 +40,16 @@
                 <th th:text="#{person.Age}">age</th>
                 <th th:text="#{show.tableHeaderAction}" th:if="${isAdmin}">action</th>
             </tr>
-            <tr th:each="person : ${personList}">
+            <tr th:each="person : ${personList}" th:object="${person}">
                 <td th:text="${personStat.count}">index</td>
                 <td>
-                    <a th:href="@{${person.id}}" th:text="${person.name}">name</a>
+                    <a th:href="@{*{id}}" th:text="${person.name}">name</a>
                 </td>
-                <td th:text="${person.age}">age</td>
+                <td th:text="*{age}">age</td>
                 <td th:if="${isAdmin}">
-                    <a th:href="@{|/confirmDelete/${person.id}|}" th:onclick="|confirm_delete(${person.id}); return false;|" th:text="#{label.delete}">delete</a>
+                    <a th:href="@{ ${@Url.CONFIRM_DELETE} (id = *{id}) }" th:onclick="|confirm_delete(*{id}); return false;|" th:text="#{label.delete}">delete</a>
                     &nbsp;
-                    <a th:href="@{|/person/edit/${person.id}|}" th:text="#{label.edit}">edit</a>
+                    <a th:href="@{ ${@Url.EDIT_PERSON} (id = *{id}) }" th:text="#{label.edit}">edit</a>
                 </td>
             </tr>
             <tr>
@@ -55,13 +57,13 @@
             </tr>
         </table>
         <br/>
-        <a th:href="@{/person/add}" th:text="#{link.addNewPerson}" th:if="${isAdmin}">add</a>
+        <a th:href="@{ ${@Url.ADD_PERSON} }" th:text="#{link.addNewPerson}" th:if="${isAdmin}">add</a>
 
         <script th:inline="javascript" th:if="${isAdmin}">
             function confirm_delete(id) {
                 var request = [[#{delete.request}]];
                 var csrf = [[${_csrf.token}]];
-                var url = [[@{/person/delete}]];
+                var url = [[@{ ${@Url.DELETE_PERSON} }]];
                 if (!confirm(request)) return false;
                 $.ajax({
                     method: "POST",

@@ -16,7 +16,7 @@
         </div>
 
         <div sec:authorize="isAuthenticated()">
-            <form method="post" th:action="@{/logout}">
+            <form method="post" th:action="@{ ${@Url.LOGOUT} }">
                 <span th:text="#{user.welcome}">welcome</span>
                 <span class="bold" sec:authentication="principal.username">username</span>
                 <input type="submit" value="logout" th:value="#{user.logout}"/>
@@ -25,7 +25,9 @@
 
         <div sec:authorize="!isAuthenticated()">
             <span class="italic" th:text="#{user.notLogged}">User not logged in</span>
-            <a th:href="@{/login}"><button type="button" th:text="#{user.login}">Login</button></a>
+            <a th:href="@{ ${@Url.LOGIN} }">
+                <button type="button" th:text="#{user.login}">Login</button>
+            </a>
         </div>
     </div>
 
@@ -35,7 +37,7 @@
             <input type="hidden" name="id" th:value="${id}" />
             <input type="hidden" name="_method" value="delete" />
             <input type="submit" th:value="#{label.delete}" />
-            <a th:href="@{/person/show}">
+            <a th:href="@{ ${@Url.SHOW_PERSON} }">
                 <button type="button" th:text="#{label.cancel}">Cancel</button>
             </a>
         </form>
