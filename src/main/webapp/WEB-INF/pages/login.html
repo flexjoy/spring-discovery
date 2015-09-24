@@ -20,7 +20,6 @@
                 <span th:text="#{user.welcome}">welcome</span>
                 <span class="bold" sec:authentication="principal.username">username</span>
                 <input type="submit" value="logout" th:value="#{user.logout}"/>
-                <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
             </form>
         </div>
 
@@ -37,7 +36,7 @@
             <span th:text="${errorMsg}">error</span>
         </div>
         <h3 th:text="#{user.loginHeader}">loginHeader</h3>
-        <form method="post">
+        <form method="post" th:action="@{/login}">
             <table>
                 <tr>
                     <td th:text="#{user.user}">user</td>
@@ -53,7 +52,6 @@
                     </td>
                 </tr>
             </table>
-            <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
         </form>
         <a th:href="@{/person/show}" th:text="#{link.backToPersonList}">back</a>
     </div>
