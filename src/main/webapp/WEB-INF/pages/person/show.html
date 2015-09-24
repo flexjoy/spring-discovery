@@ -4,28 +4,6 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.w3.org/1999/xhtml"
       th:include="templates/template :: page">
-<head>
-    <title></title>
-    <script th:inline="javascript" sec:authorize="hasRole('ADMIN')" th:fragment="myscript">
-        function confirm_delete(id) {
-            var request = [[#{delete.request}]];
-            var csrf = [[${_csrf.token}]];
-            var url = [[@{/person/delete}]];
-            if (!confirm(request)) return false;
-            $.ajax({
-                method: "POST",
-                url: url,
-                data: {
-                    id: id,
-                    _method: "DELETE",
-                    _csrf: csrf
-                }
-            }).done(function(html) {
-                $("body").html(html);
-            });
-        }
-    </script>
-</head>
 <body>
     <div th:fragment="content">
         <h2 th:text="#{show.title}">title</h2>
@@ -54,6 +32,26 @@
         </table>
         <br/>
         <a th:href="@{/person/add}" th:text="#{link.addNewPerson}" sec:authorize="hasRole('ADMIN')">add</a>
+
+        <script th:inline="javascript" sec:authorize="hasRole('ADMIN')">
+            function confirm_delete(id) {
+                var request = [[#{delete.request}]];
+                var csrf = [[${_csrf.token}]];
+                var url = [[@{/person/delete}]];
+                if (!confirm(request)) return false;
+                $.ajax({
+                    method: "POST",
+                    url: url,
+                    data: {
+                        id: id,
+                        _method: "DELETE",
+                        _csrf: csrf
+                    }
+                }).done(function(html) {
+                    $("body").html(html);
+                });
+            }
+        </script>
     </div>
 </body>
 </html>
