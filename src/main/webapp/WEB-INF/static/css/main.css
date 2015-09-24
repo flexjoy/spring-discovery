@@ -1,14 +1,17 @@
 .error {
-    color: #ff0000;
+    background: #f2dede;
+    border: 1px solid #eed3d7;
+    color: #b94a48;
+    display: block;
+    padding: 5px 15px;
+    width: auto;
 }
 
 .errorblock {
-    color: #000;
-    background-color: #ffEEEE;
-    border: 1px solid #ff0000;
-    padding: 10px;
-    margin: 5px;
-    font-size: 0.8em;
+    background: #f2dede;
+    border: 1px solid #eed3d7;
+    padding: 20px;
+    font-size: 0.9em;
 }
 
 .bold {
