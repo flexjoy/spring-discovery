@@ -26,7 +26,7 @@
 
         <div sec:authorize="!isAuthenticated()">
             <i th:text="#{user.notLogin}">user not login</i>
-            <a th:href="@{/login}"><button type="button" value="login" th:text="#{user.login}" /></a>
+            <a th:href="@{/login}"><button type="button" th:text="#{user.login}">Login</button></a>
         </div>
     </div>
 
@@ -37,7 +37,7 @@
             <input type="hidden" name="_method" value="delete" />
             <input type="submit" th:value="#{label.delete}" />
             <a th:href="@{/person/show}">
-                <button type="button" th:text="#{label.cancel}"/>
+                <button type="button" th:text="#{label.cancel}">Cancel</button>
             </a>
         </form>
     </div>
