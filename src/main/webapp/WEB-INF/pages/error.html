@@ -25,7 +25,7 @@
         </div>
 
         <div sec:authorize="!isAuthenticated()">
-            <i th:text="#{user.notLogin}">user not login</i>
+            <i th:text="#{user.notLogged}">User not logged in</i>
             <a th:href="@{/login}"><button type="button" th:text="#{user.login}">Login</button></a>
         </div>
     </div>
