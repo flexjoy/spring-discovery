@@ -6,7 +6,7 @@
 <head>
     <title>PersonKeeper</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{ ${@Url.MAIN_CSS} }"/>
 </head>
 <body>
 
@@ -33,7 +33,7 @@
 
     <div id="content">
         <h2 th:text="#{delete.request}">delete-request</h2>
-        <form method="post" th:action="@{/person/delete}">
+        <form method="post" th:action="@{ ${@Url.DELETE_PERSON} }">
             <input type="hidden" name="id" th:value="${id}" />
             <input type="hidden" name="_method" value="delete" />
             <input type="submit" th:value="#{label.delete}" />

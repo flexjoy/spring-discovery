@@ -19,4 +19,6 @@ public final class Url {
     public static final String CONFIRM_DELETE   = "/confirmDelete/{id}";
     public static final String LOGIN            = "/login";
     public static final String LOGOUT           = "/logout";
+
+    public static final String MAIN_CSS           = "/static/css/main.css";
 }
