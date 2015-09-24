@@ -1,0 +1,12 @@
+.error {
+    color: #ff0000;
+}
+
+.errorblock {
+    color: #000;
+    background-color: #ffEEEE;
+    border: 1px solid #ff0000;
+    padding: 10px;
+    margin: 5px;
+    font-size: 0.8em;
+}
