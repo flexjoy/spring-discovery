@@ -34,7 +34,7 @@
     </div>
 
     <div id="content" th:with="isAdmin=${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:object="${person}">
-        <h2 th:text="#{person.title}">Person detail</h2>
+        <h2 th:text="#{title.personInfo}">Person detail</h2>
         <table border="1" cellpadding="5" cellspacing="0">
             <tr>
                 <th th:text="#{person.ID}">ID</th>
@@ -52,7 +52,7 @@
         <br />
         <a href="show.html"
            th:href="@{ ${@Url.SHOW_PERSON} }"
-           th:text="#{link.backToPersonList}">&laquo; Back to person list</a>
+           th:text="#{link.personList}">&laquo; Back to person list</a>
         <span th:if="${isAdmin}">
              |
             <a href="../confirmDelete.html"
@@ -66,12 +66,12 @@
              |
             <a href="add.html"
                th:href="@{ ${@Url.ADD_PERSON} }"
-               th:text="#{link.addNewPerson}">Add new person</a>
+               th:text="#{link.add}">Add new person</a>
         </span>
 
         <script th:inline="javascript" th:if="${isAdmin}">
             function confirm_delete(id) {
-                var request = [[#{delete.request}]];
+                var request = [[#{request.delete}]];
                 var csrf = [[${_csrf.token}]];
                 var url = [[@{ ${@Url.DELETE_PERSON} }]];
                 if (!confirm(request)) return false;

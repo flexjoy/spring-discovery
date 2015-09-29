@@ -34,13 +34,13 @@
     </div>
 
     <div id="content" th:with="isAdmin=${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-        <h2 th:text="#{show.title}">Person list</h2>
+        <h2 th:text="#{title.personList}">Person list</h2>
         <table border="1" cellpadding="5" cellspacing="0">
             <tr>
-                <th th:text="#{show.tableHeaderId}">#</th>
+                <th th:text="#{table.header.Id}">#</th>
                 <th th:text="#{person.Name}">Name</th>
                 <th th:text="#{person.Age}">Age</th>
-                <th th:text="#{show.tableHeaderAction}" th:if="${isAdmin}">Action</th>
+                <th th:text="#{table.header.action}" th:if="${isAdmin}">Action</th>
             </tr>
             <tr th:each="person : ${personList}" th:object="${person}">
                 <td th:text="${personStat.count}">1</td>
@@ -64,18 +64,18 @@
             <tr>
                 <td colspan="4"
                     th:colspan="${isAdmin ? '4' : '3' }"
-                    th:text="|#{show.totalPersons} ${personList.size()}|">Total persons: 1</td>
+                    th:text="|#{table.totalPersons} ${personList.size()}|">Total persons: 1</td>
             </tr>
         </table>
         <br/>
         <a href="add.html"
            th:href="@{ ${@Url.ADD_PERSON} }"
-           th:text="#{link.addNewPerson}"
+           th:text="#{link.add}"
            th:if="${isAdmin}">Add new person</a>
 
         <script th:inline="javascript" th:if="${isAdmin}">
             function confirm_delete(id) {
-                var request = [[#{delete.request}]];
+                var request = [[#{request.delete}]];
                 var csrf = [[${_csrf.token}]];
                 var url = [[@{ ${@Url.DELETE_PERSON} }]];
                 if (!confirm(request)) return false;

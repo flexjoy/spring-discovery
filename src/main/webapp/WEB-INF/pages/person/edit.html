@@ -34,7 +34,7 @@
     </div>
 
     <div id="content">
-        <h2 th:text="#{edit.title}">Edit person</h2>
+        <h2 th:text="#{title.editPerson}">Edit person</h2>
         <form method="post" action="person.html"
               th:action="@{ ${@Url.EDIT_PERSON} (id = *{id}) }"
               th:object="${person}">
@@ -63,7 +63,7 @@
         <br />
         <a href="show.html"
            th:href="@{ ${@Url.SHOW_PERSON} }"
-           th:text="#{link.backToPersonList}">&laquo; Back to person list</a>
+           th:text="#{link.personList}">&laquo; Back to person list</a>
     </div>
 </body>
 </html>

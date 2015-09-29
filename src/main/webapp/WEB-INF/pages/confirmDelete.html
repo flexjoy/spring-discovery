@@ -34,7 +34,7 @@
     </div>
 
     <div id="content">
-        <h2 th:text="#{delete.request}">Delete person?</h2>
+        <h2 th:text="#{request.delete}">Delete person?</h2>
         <form method="post" th:action="@{ ${@Url.DELETE_PERSON} }" action="person/show.html">
             <input type="hidden" name="id" th:value="${id}" />
             <input type="hidden" name="_method" value="delete" />

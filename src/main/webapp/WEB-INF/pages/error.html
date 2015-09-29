@@ -34,7 +34,7 @@
     </div>
 
     <div id="content">
-        <h2 class="error" th:text="#{error.title}">Error</h2>
+        <h2 class="error" th:text="#{title.error}">Error</h2>
         <div>
             <span class="bold" th:text="${name}">Error name</span>
             <span> : </span>
@@ -43,7 +43,7 @@
         <br/>
         <a href="person/show.html"
            th:href="@{ ${@Url.SHOW_PERSON} }"
-           th:text="#{link.backToPersonList}">&laquo; Back to person list</a>
+           th:text="#{link.personList}">&laquo; Back to person list</a>
         <br/>
         <br/>
         <div class="errorblock">
