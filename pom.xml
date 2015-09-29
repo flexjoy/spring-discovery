@@ -12,6 +12,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <thymeleaf.version>3.0.0.ALPHA03</thymeleaf.version>
     </properties>
 
     <!-- Maven "Bill Of Materials" Dependency -->
@@ -105,17 +106,17 @@
         <dependency>
             <groupId>org.thymeleaf</groupId>
             <artifactId>thymeleaf</artifactId>
-            <version>3.0.0.ALPHA03</version>
+            <version>${thymeleaf.version}</version>
         </dependency>
         <dependency>
             <groupId>org.thymeleaf</groupId>
             <artifactId>thymeleaf-spring4</artifactId>
-            <version>3.0.0.ALPHA03</version>
+            <version>${thymeleaf.version}</version>
         </dependency>
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity4</artifactId>
-            <version>3.0.0.ALPHA03</version>
+            <version>${thymeleaf.version}</version>
         </dependency>
 
         <!-- Hibernate -->
