@@ -24,13 +24,14 @@
                 <input type="submit" value="Logout" th:value="#{user.logout}"/>
             </form>
         </div>
-
+        <!--/*/
         <div sec:authorize="!isAuthenticated()">
             <span class="not-logged-text" th:text="#{user.notLogged}">User not logged in</span>
             <a th:href="@{ ${@Url.LOGIN} }" href="../login.html">
                 <button type="button" th:text="#{user.login}">Login</button>
             </a>
         </div>
+        /*/-->
     </div>
 
     <div id="content" th:with="isAdmin=${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:object="${person}">

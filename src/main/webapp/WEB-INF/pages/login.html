@@ -19,6 +19,7 @@
     </div>
 
     <div id="content">
+        <!--/*/
         <div class="error"
              th:if="${param.error != null}"
              th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].class.simpleName}">
@@ -26,6 +27,7 @@
             <br />
             <span th:text="|#{label.reason}: #{ ${errorMsg} }|">error message</span>
         </div>
+        /*/-->
         <h3 th:text="#{user.loginHeader}">Login with Username and Password</h3>
         <form method="post" th:action="@{ ${@Url.LOGIN} }" action="person/show.html">
             <table>
