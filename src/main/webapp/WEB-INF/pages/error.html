@@ -20,13 +20,13 @@
         <div sec:authorize="isAuthenticated()">
             <form method="post" th:action="@{ ${@Url.LOGOUT} }" action="person/show.html">
                 <span th:text="#{user.welcome}">Welcome, </span>
-                <span class="bold" sec:authentication="principal.username">username</span>
+                <span class="username" sec:authentication="principal.username">username</span>
                 <input type="submit" value="Logout" th:value="#{user.logout}"/>
             </form>
         </div>
 
         <div sec:authorize="!isAuthenticated()">
-            <span class="italic" th:text="#{user.notLogged}">User not logged in</span>
+            <span class="not-logged-text" th:text="#{user.notLogged}">User not logged in</span>
             <a th:href="@{ ${@Url.LOGIN} }" href="login.html">
                 <button type="button" th:text="#{user.login}">Login</button>
             </a>
@@ -36,7 +36,7 @@
     <div id="content">
         <h2 class="error" th:text="#{title.error}">Error</h2>
         <div>
-            <span class="bold" th:text="${name}">Error name</span>
+            <span class="username" th:text="${name}">Error name</span>
             <span> : </span>
             <span th:text="${exception.message}">error message</span>
         </div>
@@ -47,7 +47,7 @@
         <br/>
         <br/>
         <div class="errorblock">
-            <span class="bold" th:text="#{error.detailed}">Detailed information:</span>
+            <span class="detailed" th:text="#{error.detailed}">Detailed information:</span>
             <br/>
             <br/>
             <span th:each="ste : ${exception.stackTrace}">

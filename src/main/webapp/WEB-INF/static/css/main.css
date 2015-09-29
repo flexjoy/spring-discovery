@@ -14,10 +14,10 @@
     font-size: 0.9em;
 }
 
-.bold {
+.username, .detailed {
     font-weight: bold;
 }
 
-.italic {
+.not-logged-text {
     font-style: italic;
 }
