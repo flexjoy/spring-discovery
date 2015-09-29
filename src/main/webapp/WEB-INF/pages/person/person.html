@@ -85,8 +85,8 @@
                         _method: "DELETE",
                         _csrf: csrf
                     }
-                }).done(function(html) {
-                    $("body").html(html);
+                }).done(function() {
+                    window.location.replace([[@{ ${@Url.SHOW_PERSON} }]])
                 });
             }
         </script>
