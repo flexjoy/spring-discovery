@@ -74,7 +74,9 @@
                 var request = [[#{request.delete}]];
                 var csrf = [[${_csrf.token}]];
                 var url = [[@{ ${@Url.DELETE_PERSON} }]];
-                if (!confirm(request)) return false;
+                if (!confirm(request)) {
+                    return false;
+                }
                 $.ajax({
                     method: "POST",
                     url: url,
