@@ -1,5 +1,7 @@
 package com.springapp.mvc;
 
+import com.springapp.Url;
+import com.springapp.config.RootConfig;
 import com.springapp.config.ServletConfig;
 import com.springapp.config.WebAppInit;
 import org.junit.Before;
@@ -21,7 +23,8 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @WebAppConfiguration
 @ContextConfiguration(classes = {
         WebAppInit.class,
-        ServletConfig.class
+        ServletConfig.class,
+        RootConfig.class
 })
 public class AppTests {
 
@@ -39,7 +42,7 @@ public class AppTests {
     @Test
     public void simple() throws Exception {
         mockMvc.perform(get("/"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("hello"));
+                .andExpect(status().isFound())
+                .andExpect(view().name( "redirect:" + Url.SHOW_PERSON));
     }
 }
