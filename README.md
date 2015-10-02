@@ -1,5 +1,7 @@
 # SpringHelloWorld
 
+[![Build Status](https://travis-ci.org/flexjoy/SpringHelloWorld.svg?branch=master)](https://travis-ci.org/flexjoy/SpringHelloWorld)
+
 ##Test project to lean Spring framework.
 
 Project is a simple web-application that creates in memory H2 database with table `people` and following fields:
