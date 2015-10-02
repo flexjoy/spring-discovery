@@ -1,10 +1,32 @@
 # SpringHelloWorld
 
-Учебный проект по изучению Spring MVC.
+##Test project to lean Spring framework.
 
-Создает базу данных в памяти с таблицей `people`. Поля таблицы - `ФИО` и `возраст` человека. Обеспечивает все CRUD-операции с данными базы данных.
+Project is a simple web-application that creates in memory H2 database with table `people` and following fields:
+ 
+ - `id`
+ - `name`
+ - `age`
+ 
+Web-application provides full CRUD operations with data for logged user `admin` only.
+Also, project internationalization for Russian/English languages available.
 
+1. Use `mvn jetty:run` command to start application.
+2. Open <http://localhost:8080> url in your browser to use application. 
+ 
 
-1. Для запуска проекта использовать команду: `mvn jetty:run`
-           
-2. Для получения результата открыть в браузере: <http://localhost:8080>
+Used technology:
+
+ - Spring Framework (MVC, Security, Data-JPA)
+ - Maven
+ - Jetty
+ - JSP
+ - Liquibase
+ - H2 database
+ - JDBC
+ - JPA/Hibernate
+ - JSR303
+ - Hibernate Validator
+ - Thymeleaf
+ - TravisCI
+ 
