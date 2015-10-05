@@ -81,9 +81,10 @@ public class HelloController {
     }
 
     @RequestMapping(value = Url.EDIT_PERSON, method = RequestMethod.POST)
-    public String handleEditForm(@Valid Person person, BindingResult result) {
+    public String handleEditForm(@PathVariable("id") long id, @Valid Person person, BindingResult result) {
         String view = "/person/edit"; // if errors
         if (!result.hasErrors()) {
+            person.setId(id);
             repository.save(person);
             String dstUrl = UriComponentsBuilder
                     .fromUriString(Url.PERSON)

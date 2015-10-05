@@ -39,7 +39,6 @@
         <form method="post" action="person.html"
               th:action="@{ ${@Url.EDIT_PERSON} (id = *{id}) }"
               th:object="${person}">
-            <input type="hidden" name="id" th:value="*{id}"/>
             <table>
                 <tr>
                     <td th:text="#{person.Name}">Name</td>
