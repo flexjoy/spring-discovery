@@ -21,4 +21,5 @@ public final class Url {
     public static final String LOGOUT           = "/logout";
 
     public static final String MAIN_CSS           = "/static/css/main.css";
+    public static final String MAIN_JS           = "/static/js/main.js";
 }

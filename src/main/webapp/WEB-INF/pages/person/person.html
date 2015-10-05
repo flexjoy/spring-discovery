@@ -58,7 +58,13 @@
              |
             <a href="../confirmDelete.html"
                th:href="@{ ${@Url.CONFIRM_DELETE} (id = *{id}) }"
-               th:onclick="|confirm_delete(*{id}); return false;|"
+               th:onclick="|confirm_delete(
+                            '*{id}',
+                            '#{request.delete}',
+                            '${_csrf.token}',
+                            '@{ ${@Url.DELETE_PERSON} }',
+                            '@{ ${@Url.SHOW_PERSON} }'
+                            ); return false;|"
                th:text="#{label.delete}">Delete</a>
              |
             <a href="edit.html"
@@ -70,26 +76,9 @@
                th:text="#{link.add}">Add new person</a>
         </span>
 
-        <script th:inline="javascript" th:if="${isAdmin}">
-            function confirm_delete(id) {
-                var request = [[#{request.delete}]];
-                var csrf = [[${_csrf.token}]];
-                var url = [[@{ ${@Url.DELETE_PERSON} }]];
-                if (!confirm(request)) {
-                    return false;
-                }
-                $.ajax({
-                    method: "POST",
-                    url: url,
-                    data: {
-                        id: id,
-                        _method: "DELETE",
-                        _csrf: csrf
-                    }
-                }).done(function() {
-                    window.location.replace([[@{ ${@Url.SHOW_PERSON} }]])
-                });
-            }
+        <script src="../../static/js/main.js"
+                th:src="@{ ${@Url.MAIN_JS} }"
+                th:if="${isAdmin}">
         </script>
     </div>
 </body>
