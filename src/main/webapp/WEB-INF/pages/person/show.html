@@ -34,13 +34,13 @@
     </div>
 
     <div id="content" th:with="isAdmin=${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-        <h2 th:text="#{title.personList}">Person list</h2>
+        <h2 th:text="#{label.personList}">Person list</h2>
         <table border="1" cellpadding="5" cellspacing="0">
             <tr>
-                <th th:text="#{table.header.Id}">#</th>
+                <th th:text="#{label.Id}">#</th>
                 <th th:text="#{person.Name}">Name</th>
                 <th th:text="#{person.Age}">Age</th>
-                <th th:text="#{table.header.action}" th:if="${isAdmin}">Action</th>
+                <th th:text="#{label.action}" th:if="${isAdmin}">Action</th>
             </tr>
             <tr th:each="person : ${personList}" th:object="${person}">
                 <td th:text="${personStat.count}">1</td>
@@ -64,7 +64,7 @@
             <tr>
                 <td colspan="4"
                     th:colspan="${isAdmin ? '4' : '3' }"
-                    th:text="|#{table.totalPersons} ${personList.size()}|">Total persons: 1</td>
+                    th:text="|#{label.totalPersons} ${personList.size()}|">Total persons: 1</td>
             </tr>
         </table>
         <br/>

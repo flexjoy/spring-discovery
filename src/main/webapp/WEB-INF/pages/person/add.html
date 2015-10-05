@@ -35,7 +35,7 @@
     </div>
 
     <div id="content">
-        <h2 th:text="#{title.addPerson}">Add new person</h2>
+        <h2 th:text="#{label.addPerson}">Add new person</h2>
 
         <form method="post" th:action="@{ ${@Url.ADD_PERSON} }" action="person.html">
             <table th:object="${person}">

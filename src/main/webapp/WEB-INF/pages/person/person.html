@@ -35,7 +35,7 @@
     </div>
 
     <div id="content" th:with="isAdmin=${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:object="${person}">
-        <h2 th:text="#{title.personInfo}">Person detail</h2>
+        <h2 th:text="#{label.personInfo}">Person detail</h2>
         <table border="1" cellpadding="5" cellspacing="0">
             <tr>
                 <th th:text="#{person.ID}">ID</th>
