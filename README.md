@@ -1,9 +1,9 @@
 # SpringHelloWorld [![Build Status](https://travis-ci.org/flexjoy/SpringHelloWorld.svg?branch=master)](https://travis-ci.org/flexjoy/SpringHelloWorld)
 
 
-##Training project to lean Spring framework.
+##Training project to learn Spring framework.
 
-Project is a simple web-application that creates in memory H2 database with table `people` and following fields:
+Project is a simple web-application that creates in memory H2 database with table `people` with the following fields:
  
  - `id`
  - `name`
@@ -21,10 +21,8 @@ Used technology:
  - Spring Framework (MVC, Security, Data-JPA)
  - Maven
  - Jetty
- - JSP
  - Liquibase
  - H2 database
- - JDBC
  - JPA/Hibernate
  - JSR303
  - Hibernate Validator
