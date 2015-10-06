@@ -12,13 +12,14 @@ Project is a simple web-application that creates in memory H2 database with tabl
 Web-application provides full CRUD operations with data for logged user `admin` only.
 Also, project internationalization for Russian/English languages available.
 
-1. Use `mvn jetty:run` command to start application.
-2. Open <http://localhost:8080> url in your browser to use application. 
+1. Use `mvn spring-boot:run` command to start application.
+2. Open <http://localhost:8080> url in your browser to use application.
+3. Open <http://localhost:8080/h2> url to use H2 database console.
  
 
 Used technology:
 
- - Spring Framework (MVC, Security, Data-JPA)
+ - Spring Boot Framework (MVC, Security, Data-JPA)
  - Maven
  - Jetty
  - Liquibase
