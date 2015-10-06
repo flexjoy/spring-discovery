@@ -1,4 +1,4 @@
-package com.springapp.config.security;
+package com.springapp.config;
 
 import com.springapp.Url;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +31,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/confirmDelete/**").access("hasRole('ROLE_ADMIN')")
                 .and().formLogin().loginPage(Url.LOGIN)
                 .and().logout().logoutSuccessUrl(Url.HOME_PAGE);
+
+        // this two lines down required for H2 console working
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
     }
 }

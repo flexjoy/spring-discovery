@@ -1,6 +1,5 @@
 package com.springapp.mvc;
 
-import com.springapp.Url;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,13 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Sergey Cherepanov
  */
 @ControllerAdvice
-public class ExceptionControllerAdvice {
+public class ExceptionController {
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public ModelAndView exception(Exception e) {
 
-        ModelAndView mav = new ModelAndView(Url.ERROR_PAGE);
+        ModelAndView mav = new ModelAndView("error");
         mav.addObject("name", e.getClass().getSimpleName());
         mav.addObject("exception", e);
 

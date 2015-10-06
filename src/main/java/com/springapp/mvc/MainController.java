@@ -16,7 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.validation.Valid;
 
 @Controller
-public class HelloController {
+public class MainController {
 
     @Autowired
     private PersonRepository repository;
@@ -54,11 +54,7 @@ public class HelloController {
     public String personDetail(@PathVariable("id") long id, Model model) {
         Person person = repository.findOne(id);
         model.addAttribute("person", person);
-        String view = UriComponentsBuilder
-                .fromUriString(Url.PERSON)
-                .buildAndExpand("person")
-                .toString();
-        return view;
+        return "person/person";
     }
 
     // Confirm delete person when JavaScript is disabled
@@ -77,7 +73,7 @@ public class HelloController {
     public String editPerson(@PathVariable("id") long id, Model model) {
         Person person = repository.findOne(id);
         model.addAttribute("person", person);
-        return "/person/edit";
+        return "person/edit";
     }
 
     @RequestMapping(value = Url.EDIT_PERSON, method = RequestMethod.POST)

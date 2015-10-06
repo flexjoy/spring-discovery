@@ -1,14 +1,16 @@
 package com.springapp.config;
 
-import org.springframework.context.MessageSource;
+import org.h2.server.web.WebServlet;
+import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
 import java.util.Locale;
 
@@ -18,7 +20,7 @@ import java.util.Locale;
  * @author Sergey Cherepanov
  */
 @Configuration
-public class RootConfig extends WebMvcConfigurerAdapter {
+public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -36,13 +38,20 @@ public class RootConfig extends WebMvcConfigurerAdapter {
         return resolver;
     }
 
-    @Bean(name = "messageSource")
-    public MessageSource messageSource() {
-        ResourceBundleMessageSource source = new ResourceBundleMessageSource();
-        source.setBasenames(
-                "Messages",
-                "SecurityMessages"
-        );
-        return source;
+    @Bean
+    public ServletRegistrationBean h2Console() {
+        ServletRegistrationBean h2Console = new ServletRegistrationBean(new WebServlet());
+        h2Console.addUrlMappings("/h2/*");
+        return h2Console;
+    }
+
+    @Bean
+    public SpringSecurityDialect securityDialect() {
+        return new SpringSecurityDialect();
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**").addResourceLocations("/WEB-INF/static/");
     }
 }

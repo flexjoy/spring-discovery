@@ -61,7 +61,6 @@
                th:onclick="|confirm_delete(
                             '*{id}',
                             '#{request.delete}',
-                            '${_csrf.token}',
                             '@{ ${@Url.DELETE_PERSON} }',
                             '@{ ${@Url.SHOW_PERSON} }'
                             ); return false;|"

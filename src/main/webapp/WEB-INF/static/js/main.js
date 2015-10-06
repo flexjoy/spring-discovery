@@ -1,7 +1,7 @@
 //
 // Delete person.
 //
-function confirm_delete(id, request, csrf, deleteUrl, doneUrl) {
+function confirm_delete(id, request, deleteUrl, doneUrl) {
     if (!confirm(request)) {
         return false;
     }
@@ -11,7 +11,6 @@ function confirm_delete(id, request, csrf, deleteUrl, doneUrl) {
         data: {
             id: id,
             _method: "DELETE",
-            _csrf: csrf
         }
     }).done(function() {
         window.location.replace(doneUrl)

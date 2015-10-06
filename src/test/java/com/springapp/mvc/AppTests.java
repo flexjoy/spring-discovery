@@ -1,9 +1,7 @@
 package com.springapp.mvc;
 
 import com.springapp.Url;
-import com.springapp.config.RootConfig;
-import com.springapp.config.ServletConfig;
-import com.springapp.config.WebAppInit;
+import com.springapp.config.MvcConfig;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,9 +20,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = {
-        WebAppInit.class,
-        ServletConfig.class,
-        RootConfig.class
+        MvcConfig.class
 })
 public class AppTests {
 
