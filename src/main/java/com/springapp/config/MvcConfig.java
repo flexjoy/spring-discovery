@@ -10,7 +10,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
 import java.util.Locale;
 
@@ -43,11 +42,6 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         ServletRegistrationBean h2Console = new ServletRegistrationBean(new WebServlet());
         h2Console.addUrlMappings("/h2/*");
         return h2Console;
-    }
-
-    @Bean
-    public SpringSecurityDialect securityDialect() {
-        return new SpringSecurityDialect();
     }
 
     @Override

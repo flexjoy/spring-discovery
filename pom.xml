@@ -64,7 +64,7 @@
         <!-- Thymeleaf extras -->
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
-            <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+            <artifactId>thymeleaf-extras-springsecurity3</artifactId>
             <version>2.1.2.RELEASE</version>
         </dependency>
 
