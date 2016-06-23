@@ -1,4 +1,4 @@
-# spring-discovery [![Build Status](https://travis-ci.org/flexjoy/SpringHelloWorld.svg?branch=master)](https://travis-ci.org/flexjoy/SpringHelloWorld)
+# spring-discovery [![Build Status](https://travis-ci.org/flexjoy/spring-discovery.svg?branch=master)](https://travis-ci.org/flexjoy/spring-discovery)
 
 
 ##Training project to learn Spring framework.
